@@ -1,4 +1,4 @@
-### Kotlin Developer for Android and Multiplatform 👋
+### Kotlin Developer for Android and Multiplatform
 
 - 🔭 I’m currently working on Android Devel0pment
 - 🌱 I’m currently learning Kotlin Multiplatform
