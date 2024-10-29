@@ -1,10 +1,9 @@
-### Kotlin Developer for Android and Multiplatform
-
+# Kotlin Developer for Android and Multiplatform
 - 🔭 I’m currently working on Android Devel0pment
 - 🌱 I’m currently learning Kotlin Multiplatform
 - ⚡ Fun fact: I see myself as a Natural Bodybuilder, and I’m training to be a Triathlon Athlete…
 
-# Some technologies that I already worked with
+### Some technologies that I already worked with
 
 <div align="center">
 	<img src="https://img.shields.io/badge/Kotlin-404D59?style=for-the-badge&logo=kotlin&logoColor=white">
