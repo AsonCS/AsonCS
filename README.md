@@ -26,4 +26,4 @@
 
 # Links
 
--   [test](/test)
+-   [Lottery numbers generator](https://asoncs.github.io/AsonCS/lottery/?max=60&amount=6)

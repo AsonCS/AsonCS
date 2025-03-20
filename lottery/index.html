@@ -1,0 +1,43 @@
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<title>Lottery</title>
+		<meta name="description" content="Generate random lottery numbers" />
+		<meta property="og:title" content="Lottery" />
+		<meta property="og:description" content="Generate random lottery numbers" />
+		<meta property="og:image" content="banner.png" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="Lottery" />
+		<meta name="twitter:description" content="Generate random lottery numbers" />
+		<meta name="twitter:image" content="banner.png" />
+		<link rel="icon" href="icon.png" type="image/png" sizes="512x512" />
+
+		<script src="../util/js/index.js"></script>
+		<script src="index.js"></script>
+
+		<link rel="stylesheet" href="../util/css/reset.css" />
+		<link rel="stylesheet" href="index.css" />
+	</head>
+	<body onload="onLoad()">
+		<main class="flex-col">
+			<h1>Lottery</h1>
+			<form id="form" target="#">
+				<h2>Generate random lottery numbers</h2>
+				<div class="flex-col">
+					<label>
+						<span>Max number</span>
+						<input id="max" name="max" placeholder="25" type="number" />
+					</label>
+					<label>
+						<span> Amount of numbers </span>
+						<input id="amount" name="amount" placeholder="15" type="number" />
+					</label>
+					<button type="submit">Generate numbers</button>
+					<span id="generate_numbers" />
+				</div>
+			</form>
+		</main>
+	</body>
+</html>
