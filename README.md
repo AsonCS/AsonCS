@@ -24,6 +24,6 @@
 	<img src="https://img.shields.io/badge/Sha256-F7DF1E?style=for-the-badge"/>
 </div>
 
-# Links
+# Projects
 
--   [test](/test)
+-   [Cod3r AI Agent - FullStack](/test)
