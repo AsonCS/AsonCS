@@ -1,8 +1,11 @@
+# AsonCS - Anderson Costa
+
 # Kotlin Developer for Android and Multiplatform
-- I'm a native Portuguese speaker, and I also speak fluent English, basic Spanish, and have just started Japanese.
-- 🔭 I’m currently working on Android Development.
-- 🌱 I’m currently learning Kotlin Multiplatform and Japanese.
-- ⚡ Fun fact: I see myself as a Natural Bodybuilder, and I’m training to be a Triathlon Athlete…
+
+-   I'm a native Portuguese speaker, and I also speak fluent English, basic Spanish, and have just started Japanese.
+-   🔭 I’m currently working on Android Development.
+-   🌱 I’m currently learning Kotlin Multiplatform and Japanese.
+-   ⚡ Fun fact: I see myself as a Natural Bodybuilder, and I’m training to be a Triathlon Athlete…
 
 ### Some technologies that I already worked with
 
@@ -20,3 +23,7 @@
 	<img src="https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=firebase&logoColor=61DAFB"/>
 	<img src="https://img.shields.io/badge/Sha256-F7DF1E?style=for-the-badge"/>
 </div>
+
+# Links
+
+-   [test](/test)
