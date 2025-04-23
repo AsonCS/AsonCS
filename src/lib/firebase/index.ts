@@ -1,4 +1,5 @@
-import { App, applicationDefault, getApp, initializeApp } from 'firebase-admin/app'
+import { credential } from 'firebase-admin'
+import { App, getApp, initializeApp } from 'firebase-admin/app'
 import {
 	getRemoteConfig,
 	RemoteConfig,
@@ -6,6 +7,7 @@ import {
 	ServerTemplate,
 } from 'firebase-admin/remote-config'
 import { Langs } from '../strings'
+import { assert } from 'console'
 
 export type DefaultConfig = {
 	[KEY_ABOUT_ME]: string
@@ -21,6 +23,10 @@ const defaultConfig: DefaultConfig = {
 	[KEY_ABOUT_ME]: 'Sou um criador de software.',
 }
 
+if (!process.env.GOOGLE_APPLICATION_CREDENTIALS) {
+	throw Error('Env GOOGLE_APPLICATION_CREDENTIALS needed')
+}
+
 try {
 	firebaseApp = getApp()
 } catch (e: any) {
@@ -29,7 +35,9 @@ try {
 			if (!firebaseApp) {
 				// Initialize Firebase
 				firebaseApp = initializeApp({
-					credential: applicationDefault(),
+					credential: credential.cert(
+						JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS)
+					),
 				})
 			}
 		} catch (e) {
@@ -52,12 +60,10 @@ try {
 
 export async function remoteConfigAll(lang: Langs): Promise<DefaultConfig> {
 	if (!template) {
-		console.log('!template')
 		return defaultConfig
 	}
 
 	if (config[lang]) {
-		console.log('config[lang]')
 		return {
 			about_me: config[lang].getString(KEY_ABOUT_ME),
 		}

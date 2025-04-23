@@ -13,8 +13,8 @@ export async function useStrings(lang: Langs | undefined = undefined): Promise<S
 	}
 
 	if (lang === Langs.EN) {
-		return { ...en, ...(await getLangEn()), ...strings }
+		return { ...en, /*...(await getLangEn()), */ ...strings }
 	}
 
-	return { ...pt, ...(await getLangPt()), ...strings }
+	return { ...pt, /*...(await getLangPt()), */ ...strings }
 }
