@@ -1,3 +1,4 @@
+import { EN } from '@/lib/strings'
 import en from '@/lib/strings/en.json'
 import pt from '@/lib/strings/pt.json'
 
@@ -29,7 +30,7 @@ export function useStrings(lang: string | undefined = ''): Strings {
 		name: 'Anderson Costa da Silva',
 	}
 
-	if (lang.includes('en')) {
+	if (lang.includes(EN)) {
 		return { ...en, ...strings }
 	}
 

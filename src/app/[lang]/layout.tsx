@@ -1,4 +1,5 @@
 import type React from 'react'
+import { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Link from 'next/link'
 import { Github } from 'lucide-react'
@@ -6,6 +7,8 @@ import { Github } from 'lucide-react'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Button } from '@/components/ui/button'
 import { ModeToggle } from '@/components/mode-toggle'
+import { useLang } from '@/hooks/use-lang'
+import { useNavigateTo } from '@/hooks/use-navigateTo'
 import { useStrings } from '@/hooks/use-strings'
 import './globals.css'
 
@@ -13,12 +16,23 @@ const inter = Inter({ subsets: ['latin'] })
 
 type Props = {
 	children: React.ReactNode
-	searchParams: Promise<{ lang: string | undefined }>
+	params: Promise<{ lang: string | undefined }>
 }
 
-export default async function RootLayout({ children, searchParams }: Props) {
-	//const { lang } = await searchParams
-	const strings = useStrings()
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+	const lang = await useLang(params)
+	const strings = useStrings(lang).home.metadata
+
+	return {
+		title: strings.title,
+		description: strings.description,
+		generator: strings.generator,
+	}
+}
+
+export default async function RootLayout({ children, params }: Props) {
+	const lang = await useLang(params)
+	const strings = useStrings(lang)
 	const layoutStrings = strings.home.layout
 
 	return (
@@ -34,37 +48,47 @@ export default async function RootLayout({ children, searchParams }: Props) {
 						<header className="sticky top-0 z-40 w-full border-b bg-background">
 							<div className="container flex h-16 items-center justify-between px-4 md:px-6">
 								<div className="flex items-center gap-2">
-									<Link href="/" className="font-bold">
+									<Link href={useNavigateTo(lang)} className="font-bold">
 										{strings.name}
 									</Link>
 								</div>
 								<nav className="hidden md:flex gap-6">
 									<Link
-										href="/"
+										href={useNavigateTo(lang)}
 										className="text-sm font-medium hover:underline underline-offset-4"
 									>
 										{layoutStrings.nav.home}
 									</Link>
 									<Link
-										href="/projects"
+										href={useNavigateTo(lang, 'projects')}
 										className="text-sm font-medium hover:underline underline-offset-4"
 									>
 										{layoutStrings.nav.projects}
 									</Link>
 									<Link
-										href="/certificates"
+										href={useNavigateTo(lang, 'certificates')}
 										className="text-sm font-medium hover:underline underline-offset-4"
 									>
 										{layoutStrings.nav.certificates}
 									</Link>
 									<Link
-										href="/contact"
+										href={useNavigateTo(lang, 'contact')}
 										className="text-sm font-medium hover:underline underline-offset-4"
 									>
 										{layoutStrings.nav.contact}
 									</Link>
 								</nav>
 								<div className="flex items-center gap-2">
+									<Link href="../en" rel="noopener noreferrer">
+										<Button variant="ghost" size="icon">
+											<span className="h-5 w-5">EN</span>
+										</Button>
+									</Link>
+									<Link href="../pt" rel="noopener noreferrer">
+										<Button variant="ghost" size="icon">
+											<span className="h-5 w-5">PT</span>
+										</Button>
+									</Link>
 									<Link
 										href={strings.github}
 										target="_blank"
