@@ -21,7 +21,7 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
 	const lang = await useLang(params)
-	const strings = useStrings(lang).home.metadata
+	const strings = (await useStrings(lang)).home.metadata
 
 	return {
 		title: strings.title,
@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function RootLayout({ children, params }: Props) {
 	const lang = await useLang(params)
-	const strings = useStrings(lang)
+	const strings = await useStrings(lang)
 	const layoutStrings = strings.home.layout
 
 	return (

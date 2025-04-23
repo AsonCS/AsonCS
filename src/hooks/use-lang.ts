@@ -1,11 +1,11 @@
-import { EN, PT } from '@/lib/strings'
+import { Langs } from '@/lib/strings'
 
-export async function useLang(params: Promise<{ lang: string | undefined }>): Promise<string> {
+export async function useLang(params: Promise<{ lang: string | undefined }>): Promise<Langs> {
 	const { lang } = await params
 
-	if (lang?.includes(EN)) {
-		return EN
+	if (lang?.includes(Langs.EN)) {
+		return Langs.EN
 	}
 
-	return PT
+	return Langs.PT
 }

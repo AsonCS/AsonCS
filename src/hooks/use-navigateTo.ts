@@ -1,6 +1,6 @@
-import { PT } from '@/lib/strings'
+import { Langs } from '@/lib/strings'
 
-export function useNavigateTo(lang: string = PT, destine: string = '') {
+export function useNavigateTo(lang: Langs = Langs.PT, destine: string = '') {
 	if (destine) {
 		destine = `/${destine}`
 	}

@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { Github, Mail, MapPin, Phone } from 'lucide-react'
 
@@ -6,6 +7,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { useLang } from '@/hooks/use-lang'
 import { useNavigateTo } from '@/hooks/use-navigateTo'
 import { useStrings } from '@/hooks/use-strings'
+import { remoteConfigAll } from '@/lib/firebase'
 
 type Props = {
 	params: Promise<{ lang: string }>
@@ -13,7 +15,9 @@ type Props = {
 
 export default async function Home({ params }: Props) {
 	const lang = await useLang(params)
-	const strings = useStrings(lang)
+	const strings = await useStrings(lang)
+
+	const remote = await remoteConfigAll(lang)
 
 	return (
 		<div className="flex min-h-screen flex-col">
@@ -22,6 +26,15 @@ export default async function Home({ params }: Props) {
 					<div className="container px-4 md:px-6">
 						<div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
 							<div className="flex flex-col justify-center space-y-4">
+								<div>
+									<Image
+										alt="Profile picture"
+										className="rounded-full"
+										height={160}
+										src={'/icon.png'}
+										width={160}
+									/>
+								</div>
 								<div className="space-y-2">
 									<h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
 										{strings.name}
@@ -74,7 +87,9 @@ export default async function Home({ params }: Props) {
 												</h2>
 												<div className="text-sm text-gray-500 dark:text-gray-400">
 													<div className="flex items-center gap-2">
-														<span className="font-medium">CNPJ:</span>
+														<span className="font-medium pr-12">
+															CNPJ:
+														</span>
 														<span>36.217.301/0001-19</span>
 													</div>
 													<div className="flex items-center gap-2">
@@ -92,11 +107,11 @@ export default async function Home({ params }: Props) {
 												<div className="grid gap-2 text-sm">
 													<div className="flex items-center gap-2 text-gray-500 dark:text-gray-400">
 														<Phone className="h-4 w-4" />
-														<span>+55 (XX) XXXXX-XXXX</span>
+														<span>{strings.phone}</span>
 													</div>
 													<div className="flex items-center gap-2 text-gray-500 dark:text-gray-400">
 														<Mail className="h-4 w-4" />
-														<span>contact@andersoncosta.dev</span>
+														<span>{strings.email}</span>
 													</div>
 													<div className="flex items-center gap-2 text-gray-500 dark:text-gray-400">
 														<MapPin className="h-4 w-4" />
@@ -119,9 +134,7 @@ export default async function Home({ params }: Props) {
 									About Me
 								</h2>
 								<p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-									I'm a passionate software developer with expertise in web
-									development and modern technologies. My portfolio showcases my
-									projects, skills, and professional achievements.
+									{remote.about_me}
 								</p>
 							</div>
 						</div>

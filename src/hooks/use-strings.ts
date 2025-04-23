@@ -1,38 +1,20 @@
-import { EN } from '@/lib/strings'
-import en from '@/lib/strings/en.json'
-import pt from '@/lib/strings/pt.json'
+import { getLangEn, getLangPt } from '@/actions/getLang.action'
+import { en, pt, Langs, Strings } from '@/lib/strings'
 
-type Strings = {
-	email: string
-	github: string
-	name: string
-	home: {
-		layout: {
-			nav: {
-				certificates: string
-				contact: string
-				home: string
-				projects: string
-			}
-		}
-		metadata: {
-			description: string
-			generator: string
-			title: string
-		}
-	}
-}
+export async function useStrings(lang: Langs | undefined = undefined): Promise<Strings> {
+	'use server'
 
-export function useStrings(lang: string | undefined = ''): Strings {
-	let strings = {
+	const strings = {
 		email: 'asoncsts@gmail.com',
 		github: 'https://github.com/AsonCS',
 		name: 'Anderson Costa da Silva',
+		username: 'AsonCS',
+		phone: '+55 (11) 98220-2014',
 	}
 
-	if (lang.includes(EN)) {
-		return { ...en, ...strings }
+	if (lang === Langs.EN) {
+		return { ...en, ...(await getLangEn()), ...strings }
 	}
 
-	return { ...pt, ...strings }
+	return { ...pt, ...(await getLangPt()), ...strings }
 }
