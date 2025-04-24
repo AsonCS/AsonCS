@@ -4,6 +4,8 @@ import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
 import GitHubRepos from './github-repo'
 
+export const revalidate = 3600
+
 export default async function ProjectsPage() {
 	return (
 		<div className="container px-4 py-12 md:px-6 md:py-24">

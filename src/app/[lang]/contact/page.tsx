@@ -1,8 +1,4 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { Textarea } from '@/components/ui/textarea'
-import SubmitButton from './submit-button'
 import { useStrings } from '@/hooks/use-strings'
 import { useLang } from '@/hooks/use-lang'
 import {
@@ -11,17 +7,13 @@ import {
 	ContactLinkPhone,
 	ContactLinkPlace,
 } from '@/components/ui/link'
+import Form from './form'
 
 type Props = {
 	params: Promise<{ lang: string }>
 }
 
-export async function handleSubmit(formData: FormData) {
-	'use server'
-
-	// Simulate form submission
-	await new Promise((resolve) => setTimeout(resolve, 1_000 * 3))
-}
+export const revalidate = 3600
 
 export default async function ContactPage({ params }: Props) {
 	const lang = await useLang(params)
@@ -76,7 +68,6 @@ export default async function ContactPage({ params }: Props) {
 							</div>
 						</CardContent>
 					</Card>
-
 					<Card>
 						<CardHeader>
 							<CardTitle>Send a Message</CardTitle>
@@ -85,42 +76,7 @@ export default async function ContactPage({ params }: Props) {
 							</CardDescription>
 						</CardHeader>
 						<CardContent>
-							<form action={handleSubmit} className="space-y-4">
-								<div className="space-y-2">
-									<Label htmlFor="name">Name</Label>
-									<Input id="name" name="name" placeholder="Your name" required />
-								</div>
-								<div className="space-y-2">
-									<Label htmlFor="email">Email</Label>
-									<Input
-										id="email"
-										name="email"
-										type="email"
-										placeholder="your.email@example.com"
-										required
-									/>
-								</div>
-								<div className="space-y-2">
-									<Label htmlFor="subject">Subject</Label>
-									<Input
-										id="subject"
-										name="subject"
-										placeholder="What is this regarding?"
-										required
-									/>
-								</div>
-								<div className="space-y-2">
-									<Label htmlFor="message">Message</Label>
-									<Textarea
-										id="message"
-										name="message"
-										placeholder="Your message"
-										rows={5}
-										required
-									/>
-								</div>
-								<SubmitButton />
-							</form>
+							<Form email={strings.email} />
 						</CardContent>
 					</Card>
 				</div>

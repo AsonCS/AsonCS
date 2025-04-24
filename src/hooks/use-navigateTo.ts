@@ -1,4 +1,4 @@
-import { Langs } from '@/lib/strings'
+import { Langs } from '@/hooks/use-strings'
 
 export function useNavigateTo(lang: Langs = Langs.PT, destine: string = '') {
 	if (destine) {

@@ -1,5 +1,34 @@
-import { getLangEn, getLangPt } from '@/actions/getLang.action'
-import { en, pt, Langs, Strings } from '@/lib/strings'
+import { getLangEn, getLangPt } from '@/actions/get-lang.action'
+
+export enum Langs {
+	EN = 'en',
+	PT = 'pt',
+}
+
+export type Strings = {
+	docker_hub: string
+	email: string
+	github: string
+	name: string
+	home: {
+		layout: {
+			nav: {
+				certificates: string
+				contact: string
+				home: string
+				projects: string
+			}
+		}
+		metadata: {
+			description: string
+			generator: string
+			title: string
+		}
+	}
+	phone: string
+	place: string
+	username: string
+}
 
 export async function useStrings(lang: Langs | undefined = undefined): Promise<Strings> {
 	'use server'
@@ -15,8 +44,8 @@ export async function useStrings(lang: Langs | undefined = undefined): Promise<S
 	}
 
 	if (lang === Langs.EN) {
-		return { ...en, /*...(await getLangEn()), */ ...strings }
+		return { ...(await getLangEn()), ...strings }
 	}
 
-	return { ...pt, /*...(await getLangPt()), */ ...strings }
+	return { ...(await getLangPt()), ...strings }
 }

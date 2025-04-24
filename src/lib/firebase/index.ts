@@ -6,7 +6,8 @@ import {
 	ServerConfig,
 	ServerTemplate,
 } from 'firebase-admin/remote-config'
-import { Langs } from '../strings'
+
+import { Langs } from '@/hooks/use-strings'
 
 const KEY_ABOUT_ME = 'about_me'
 export type DefaultConfig = {
@@ -40,10 +41,10 @@ try {
 				})
 			}
 		} catch (e) {
-			console.error(e)
+			console.error('initializeApp', e)
 		}
 	} else {
-		console.error(e)
+		console.error('getApp()', e)
 	}
 }
 
@@ -54,7 +55,7 @@ try {
 		template = remoteConfig.initServerTemplate({ defaultConfig })
 	}
 } catch (e) {
-	console.error(e)
+	console.error('Initialize server-side Remote Config', e)
 }
 
 export async function remoteConfigAll(lang: Langs): Promise<DefaultConfig> {
@@ -68,7 +69,7 @@ export async function remoteConfigAll(lang: Langs): Promise<DefaultConfig> {
 		}
 	}
 
-	console.log('Load Remote Config')
+	//console.log('Load Remote Config')
 	await template.load()
 
 	// Add template parameters to config

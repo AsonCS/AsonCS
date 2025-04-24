@@ -1,3 +1,5 @@
+import { fetchWithCache } from '@/lib/utils'
+
 export interface Repo {
 	description: string | null
 	homepage: string
@@ -14,14 +16,10 @@ export interface GithubApi {
 export default function githubApi(): GithubApi {
 	return {
 		async repos(username) {
-			return await fetch(
-				`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`
+			return fetchWithCache(
+				`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`,
+				[]
 			)
-				.then((res) => res.json())
-				.catch((error) => {
-					console.error(error)
-					return []
-				})
 		},
 	}
 }

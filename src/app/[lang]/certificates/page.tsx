@@ -2,86 +2,35 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Calendar, ExternalLink } from 'lucide-react'
 
-import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardFooter,
-	CardHeader,
-	CardTitle,
-} from '@/components/ui/card'
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { RESOURCES_CERTIFICATES } from '@/lib/firebase/storage'
+import { fetchWithCache } from '@/lib/utils'
 
-// Sample certificates data - replace with your actual certificates
-interface Certificate {
-	id: number
+import certificatesJson from '../../../../public/resources/certificates/certificates.json'
+
+type Certificate = {
 	title: string
 	issuer: string
+	issuer_link: string
 	date: string
 	description: string
 	image: string
+	pdf: string
 	url: string
 }
-const certificates: Certificate[] = []
-/*[
-	{
-		id: 1,
-		title: 'Web Development Bootcamp',
-		issuer: 'Udemy',
-		date: '2023-05-15',
-		description:
-			'Comprehensive web development course covering HTML, CSS, JavaScript, React, and Node.js',
-		image: '/placeholder.svg?height=200&width=350',
-		url: '#',
-	},
-	{
-		id: 2,
-		title: 'React Advanced Concepts',
-		issuer: 'Frontend Masters',
-		date: '2023-02-10',
-		description: 'Advanced React patterns, hooks, context API, and performance optimization',
-		image: '/placeholder.svg?height=200&width=350',
-		url: '#',
-	},
-	{
-		id: 3,
-		title: 'TypeScript Fundamentals',
-		issuer: 'Pluralsight',
-		date: '2022-11-20',
-		description: 'TypeScript types, interfaces, generics, and integration with React',
-		image: '/placeholder.svg?height=200&width=350',
-		url: '#',
-	},
-	{
-		id: 4,
-		title: 'Next.js Mastery',
-		issuer: 'Vercel',
-		date: '2023-08-05',
-		description:
-			'Building scalable applications with Next.js, including SSR, SSG, and API routes',
-		image: '/placeholder.svg?height=200&width=350',
-		url: '#',
-	},
-	{
-		id: 5,
-		title: 'UI/UX Design Principles',
-		issuer: 'Coursera',
-		date: '2022-09-12',
-		description: 'User interface design, user experience principles, and design systems',
-		image: '/placeholder.svg?height=200&width=350',
-		url: '#',
-	},
-	{
-		id: 6,
-		title: 'AWS Cloud Practitioner',
-		issuer: 'Amazon Web Services',
-		date: '2023-01-30',
-		description: 'Cloud concepts, AWS services, security, architecture, and pricing',
-		image: '/placeholder.svg?height=200&width=350',
-		url: '#',
-	},
-]*/
 
-export default function CertificatesPage() {
+type Props = {
+	params: Promise<{ lang: string }>
+}
+
+export const revalidate = 3600
+
+export default async function CertificatesPage() {
+	const certificates = await fetchWithCache<Certificate[]>(
+		RESOURCES_CERTIFICATES,
+		certificatesJson
+	)
+
 	// Format date to a more readable format
 	const formatDate = (dateString: string) => {
 		const options: Intl.DateTimeFormatOptions = {
@@ -106,30 +55,43 @@ export default function CertificatesPage() {
 			</div>
 
 			<div className="grid gap-6 pt-12 md:grid-cols-2 lg:grid-cols-3">
-				{certificates.map((certificate) => (
-					<Card key={certificate.id} className="overflow-hidden">
+				{certificates.map((certificate, idx) => (
+					<Card key={idx} className="overflow-hidden flex flex-col">
 						<div className="aspect-video relative w-full overflow-hidden">
 							<Image
-								src={certificate.image || '/placeholder.svg'}
+								src={
+									certificate.image
+										? `/resources/certificates/${certificate.image}`
+										: '/placeholder.svg'
+								}
 								alt={certificate.title}
 								fill
-								className="object-cover transition-all hover:scale-105"
+								className="object-cover+ transition-all hover:scale-110"
 							/>
 						</div>
 						<CardHeader className="pb-2">
 							<CardTitle>{certificate.title}</CardTitle>
-							<CardDescription>{certificate.issuer}</CardDescription>
+							<Link
+								href={certificate.issuer_link}
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<div className="flex items-center text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50">
+									<ExternalLink className="mr-1 h-4 w-4" />
+									<span>{certificate.issuer}</span>
+								</div>
+							</Link>
 						</CardHeader>
-						<CardContent>
+						<CardContent className="grow">
 							<p className="text-sm text-gray-500 dark:text-gray-400">
 								{certificate.description}
 							</p>
+						</CardContent>
+						<CardFooter className="flex-col items-start gap-3">
 							<div className="mt-2 flex items-center text-sm text-gray-500 dark:text-gray-400">
 								<Calendar className="mr-1 h-4 w-4" />
 								<span>{formatDate(certificate.date)}</span>
 							</div>
-						</CardContent>
-						<CardFooter>
 							<Link href={certificate.url} target="_blank" rel="noopener noreferrer">
 								<div className="flex items-center text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50">
 									<ExternalLink className="mr-1 h-4 w-4" />
@@ -140,7 +102,6 @@ export default function CertificatesPage() {
 					</Card>
 				))}
 			</div>
-			<p className="text-center text-5xl text-gray-500 dark:text-gray-400">Work in progress 🥲</p>
 		</div>
 	)
 }

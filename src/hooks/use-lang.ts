@@ -1,4 +1,4 @@
-import { Langs } from '@/lib/strings'
+import { Langs } from '@/hooks/use-strings'
 
 export async function useLang(params: Promise<{ lang: string | undefined }>): Promise<Langs> {
 	const { lang } = await params

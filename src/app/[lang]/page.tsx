@@ -19,6 +19,8 @@ type Props = {
 	params: Promise<{ lang: string }>
 }
 
+export const revalidate = 3600
+
 export default async function Home({ params }: Props) {
 	const lang = await useLang(params)
 	const strings = await useStrings(lang)
