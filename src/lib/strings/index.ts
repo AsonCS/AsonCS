@@ -7,6 +7,7 @@ export enum Langs {
 }
 
 export type Strings = {
+	docker_hub: string
 	email: string
 	github: string
 	name: string
@@ -24,8 +25,9 @@ export type Strings = {
 			generator: string
 			title: string
 		}
-	},
-	phone: string,
+	}
+	phone: string
+	place: string
 	username: string
 }
 

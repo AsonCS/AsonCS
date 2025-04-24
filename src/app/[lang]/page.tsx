@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { Github, Mail, MapPin, Phone } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -8,6 +7,13 @@ import { useLang } from '@/hooks/use-lang'
 import { useNavigateTo } from '@/hooks/use-navigateTo'
 import { useStrings } from '@/hooks/use-strings'
 import { remoteConfigAll } from '@/lib/firebase'
+import {
+	ContactLinkDocker,
+	ContactLinkEmail,
+	ContactLinkGithub,
+	ContactLinkPhone,
+	ContactLinkPlace,
+} from '@/components/ui/link'
 
 type Props = {
 	params: Promise<{ lang: string }>
@@ -20,9 +26,12 @@ export default async function Home({ params }: Props) {
 	const remote = await remoteConfigAll(lang)
 
 	return (
-		<div className="flex min-h-screen flex-col">
+		<div className="flex flex-col grow">
 			<main className="flex-1">
-				<section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
+				<section
+					className="w-full py-12 bg-gradient-to-b from-gray-50 to-white
+							dark:from-gray-900 dark:to-gray-800"
+				>
 					<div className="container px-4 md:px-6">
 						<div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
 							<div className="flex flex-col justify-center space-y-4">
@@ -59,22 +68,8 @@ export default async function Home({ params }: Props) {
 									</Link>
 								</div>
 								<div className="flex items-center gap-4 text-sm">
-									<Link
-										href={strings.github}
-										className="flex items-center gap-1 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-										target="_blank"
-										rel="noopener noreferrer"
-									>
-										<Github className="h-4 w-4" />
-										<span>GitHub</span>
-									</Link>
-									<Link
-										href={`mailto:${strings.email}`}
-										className="flex items-center gap-1 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-									>
-										<Mail className="h-4 w-4" />
-										<span>Email</span>
-									</Link>
+									<ContactLinkGithub github={strings.github} />
+									<ContactLinkDocker docker={strings.docker_hub} />
 								</div>
 							</div>
 							<div className="flex items-center justify-center">
@@ -105,18 +100,13 @@ export default async function Home({ params }: Props) {
 											<div className="space-y-2">
 												<h3 className="text-lg font-medium">Contact</h3>
 												<div className="grid gap-2 text-sm">
-													<div className="flex items-center gap-2 text-gray-500 dark:text-gray-400">
-														<Phone className="h-4 w-4" />
-														<span>{strings.phone}</span>
-													</div>
-													<div className="flex items-center gap-2 text-gray-500 dark:text-gray-400">
-														<Mail className="h-4 w-4" />
-														<span>{strings.email}</span>
-													</div>
-													<div className="flex items-center gap-2 text-gray-500 dark:text-gray-400">
-														<MapPin className="h-4 w-4" />
-														<span>Brazil</span>
-													</div>
+													<ContactLinkPhone phone={strings.phone} />
+													<ContactLinkEmail email={strings.email} />
+													<ContactLinkPlace place={strings.place} />
+													<ContactLinkGithub
+														github={strings.github}
+														text={`github.com/${strings.username}`}
+													/>
 												</div>
 											</div>
 										</div>
@@ -126,7 +116,7 @@ export default async function Home({ params }: Props) {
 						</div>
 					</div>
 				</section>
-				<section className="w-full py-12 md:py-24 lg:py-32">
+				<section className="w-full py-12">
 					<div className="container px-4 md:px-6">
 						<div className="flex flex-col items-center justify-center space-y-4 text-center">
 							<div className="space-y-2">
@@ -142,27 +132,13 @@ export default async function Home({ params }: Props) {
 				</section>
 			</main>
 			<footer className="w-full border-t bg-gray-100 py-6 dark:bg-gray-900">
-				<div className="container flex flex-col items-center justify-center gap-4 px-4 md:px-6 md:flex-row">
+				<div className="container flex flex-col items-center justify-center gap-4 px-4 md:px-6">
 					<p className="text-sm text-gray-500 dark:text-gray-400">
 						© {new Date().getFullYear()} Anderson Costa da Silva. All rights reserved.
 					</p>
 					<div className="flex items-center gap-4">
-						<Link
-							href="https://github.com/andersoncosta-dev"
-							className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							<Github className="h-5 w-5" />
-							<span className="sr-only">GitHub</span>
-						</Link>
-						<Link
-							href="mailto:contact@andersoncosta.dev"
-							className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-						>
-							<Mail className="h-5 w-5" />
-							<span className="sr-only">Email</span>
-						</Link>
+						<ContactLinkGithub className="sr-only" github={strings.github} />
+						<ContactLinkEmail className="sr-only" email={strings.email} />
 					</div>
 				</div>
 			</footer>

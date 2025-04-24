@@ -5,11 +5,13 @@ export async function useStrings(lang: Langs | undefined = undefined): Promise<S
 	'use server'
 
 	const strings = {
+		docker_hub: 'https://hub.docker.com/repositories/asoncs',
 		email: 'asoncsts@gmail.com',
 		github: 'https://github.com/AsonCS',
 		name: 'Anderson Costa da Silva',
 		username: 'AsonCS',
 		phone: '+55 (11) 98220-2014',
+		place: 'https://maps.app.goo.gl/yd8YaCoTKneBD8Bp9',
 	}
 
 	if (lang === Langs.EN) {

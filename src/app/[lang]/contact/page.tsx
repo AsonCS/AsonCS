@@ -1,12 +1,16 @@
-import { Github, Mail, MapPin, Phone } from 'lucide-react'
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
-import SubmitButton from './SubmitButton'
+import SubmitButton from './submit-button'
 import { useStrings } from '@/hooks/use-strings'
 import { useLang } from '@/hooks/use-lang'
+import {
+	ContactLinkEmail,
+	ContactLinkGithub,
+	ContactLinkPhone,
+	ContactLinkPlace,
+} from '@/components/ui/link'
 
 type Props = {
 	params: Promise<{ lang: string }>
@@ -61,29 +65,13 @@ export default async function ContactPage({ params }: Props) {
 							<div className="space-y-2">
 								<h3 className="font-medium">Contact Information</h3>
 								<div className="grid gap-3">
-									<div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-										<Phone className="h-4 w-4" />
-										<span>{strings.phone}</span>
-									</div>
-									<div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-										<Mail className="h-4 w-4" />
-										<span>{strings.email}</span>
-									</div>
-									<div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-										<MapPin className="h-4 w-4" />
-										<span>Brazil</span>
-									</div>
-									<div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-										<Github className="h-4 w-4" />
-										<a
-											href={strings.github}
-											target="_blank"
-											rel="noopener noreferrer"
-											className="hover:text-gray-900 dark:hover:text-gray-50"
-										>
-											github.com/{strings.username}
-										</a>
-									</div>
+									<ContactLinkPhone phone={strings.phone} />
+									<ContactLinkEmail email={strings.email} />
+									<ContactLinkPlace place={strings.place} />
+									<ContactLinkGithub
+										github={strings.github}
+										text={`github.com/${strings.username}`}
+									/>
 								</div>
 							</div>
 						</CardContent>

@@ -7,48 +7,33 @@ import {
 	CardHeader,
 	CardTitle,
 } from '@/components/ui/card'
+import { RepoLanguage } from '@/components/ui/span'
 import { useStrings } from '@/hooks/use-strings'
+import getGithubRepoUsecase from '@/usecase/get-github-repo.usecase'
 import { ExternalLink, Github, Star } from 'lucide-react'
 import Link from 'next/link'
-
-interface Repo {
-	id: number
-	name: string
-	description: string
-	html_url: string
-	homepage: string
-	stargazers_count: number
-	language: string
-}
+import React from 'react'
 
 export default async function GitHubRepos() {
 	const strings = await useStrings()
-
-	const repos: Repo[] = await fetch(
-		`https://api.github.com/users/${strings.username}/repos?sort=updated&per_page=100`
-	)
-		.then((res) => res.json())
-		.catch((error) => {
-			console.error(error)
-			throw new Error('Failed to fetch GitHub repositories')
-		})
+	const repos = await getGithubRepoUsecase().execute(strings.username)
 
 	return repos.length > 0 ? (
 		// Actual repos
 		repos.map((repo) => (
-			<Card key={repo.id} className="overflow-hidden">
+			<Card key={repo.id} className="overflow-hidden flex flex-col">
 				<CardHeader className="pb-2">
 					<CardTitle>{repo.name}</CardTitle>
-					{repo.language && (
-						<CardDescription>
-							<span className="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800 dark:bg-gray-700 dark:text-gray-100">
-								{repo.language}
-							</span>
-						</CardDescription>
-					)}
+					<CardDescription>
+						{repo.technologies.length > 0
+							? repo.technologies.map((technology, idx) => (
+									<RepoLanguage key={idx}>{technology}</RepoLanguage>
+							  ))
+							: null}
+					</CardDescription>
 				</CardHeader>
-				<CardContent>
-					<p className="text-sm text-gray-500 dark:text-gray-400 line-clamp-3">
+				<CardContent className="grow">
+					<p className="text-sm text-gray-500 dark:text-gray-400 line-clamp-6">
 						{repo.description || 'No description available'}
 					</p>
 				</CardContent>

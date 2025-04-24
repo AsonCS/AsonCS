@@ -7,8 +7,8 @@ import {
 	ServerTemplate,
 } from 'firebase-admin/remote-config'
 import { Langs } from '../strings'
-import { assert } from 'console'
 
+const KEY_ABOUT_ME = 'about_me'
 export type DefaultConfig = {
 	[KEY_ABOUT_ME]: string
 }
@@ -18,7 +18,6 @@ let firebaseApp: App | null = null
 let remoteConfig: RemoteConfig | null = null
 let template: ServerTemplate | null = null
 
-const KEY_ABOUT_ME = 'about_me'
 const defaultConfig: DefaultConfig = {
 	[KEY_ABOUT_ME]: 'Sou um criador de software.',
 }

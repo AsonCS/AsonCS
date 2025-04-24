@@ -2,7 +2,7 @@ import { Suspense } from 'react'
 
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
-import GitHubRepos from './GitHubRepo'
+import GitHubRepos from './github-repo'
 
 export default async function ProjectsPage() {
 	return (
