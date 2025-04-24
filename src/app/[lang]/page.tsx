@@ -102,8 +102,12 @@ export default async function Home({ params }: Props) {
 											<div className="space-y-2">
 												<h3 className="text-lg font-medium">Contact</h3>
 												<div className="grid gap-2 text-sm">
-													<ContactLinkPhone phone={strings.phone} />
-													<ContactLinkEmail email={strings.email} />
+													<ContactLinkPhone
+														phones={[strings.phone, strings.phone2]}
+													/>
+													<ContactLinkEmail
+														emails={[strings.email, strings.email2]}
+													/>
 													<ContactLinkPlace place={strings.place} />
 													<ContactLinkGithub
 														github={strings.github}
@@ -140,7 +144,10 @@ export default async function Home({ params }: Props) {
 					</p>
 					<div className="flex items-center gap-4">
 						<ContactLinkGithub className="sr-only" github={strings.github} />
-						<ContactLinkEmail className="sr-only" email={strings.email} />
+						<ContactLinkEmail
+							className="sr-only"
+							emails={[strings.email, strings.email2]}
+						/>
 					</div>
 				</div>
 			</footer>

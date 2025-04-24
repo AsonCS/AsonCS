@@ -8,6 +8,7 @@ export enum Langs {
 export type Strings = {
 	docker_hub: string
 	email: string
+	email2: string
 	github: string
 	name: string
 	home: {
@@ -26,6 +27,7 @@ export type Strings = {
 		}
 	}
 	phone: string
+	phone2: string
 	place: string
 	username: string
 }
@@ -36,10 +38,12 @@ export async function useStrings(lang: Langs | undefined = undefined): Promise<S
 	const strings = {
 		docker_hub: 'https://hub.docker.com/repositories/asoncs',
 		email: 'asoncsts@gmail.com',
+		email2: 'acsgsa92@gmail.com',
 		github: 'https://github.com/AsonCS',
 		name: 'Anderson Costa da Silva',
 		username: 'AsonCS',
 		phone: '+55 (11) 98220-2014',
+		phone2: '+55 (11) 91045-3711',
 		place: 'https://maps.app.goo.gl/yd8YaCoTKneBD8Bp9',
 	}
 

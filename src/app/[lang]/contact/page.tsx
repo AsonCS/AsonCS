@@ -57,8 +57,8 @@ export default async function ContactPage({ params }: Props) {
 							<div className="space-y-2">
 								<h3 className="font-medium">Contact Information</h3>
 								<div className="grid gap-3">
-									<ContactLinkPhone phone={strings.phone} />
-									<ContactLinkEmail email={strings.email} />
+									<ContactLinkPhone phones={[strings.phone, strings.phone2]} />
+									<ContactLinkEmail emails={[strings.email, strings.email2]} />
 									<ContactLinkPlace place={strings.place} />
 									<ContactLinkGithub
 										github={strings.github}

@@ -2,7 +2,7 @@ import * as React from 'react'
 import Link from 'next/link'
 import { Mail, MapPin, Phone } from 'lucide-react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faDocker, faGithub } from '@fortawesome/free-brands-svg-icons'
+import { faDocker, faGithub, faWhatsapp } from '@fortawesome/free-brands-svg-icons'
 
 import { cn } from '@/lib/utils'
 
@@ -27,13 +27,13 @@ export const ContactLink = React.forwardRef<
 ContactLink.displayName = 'ContactLink'
 const contactLinkContentClassName = 'h-5 w-5 mr-1'
 
-export function ContactLinkEmail({ className, email }: { className?: string; email: string }) {
-	return (
+export function ContactLinkEmail({ className, emails }: { className?: string; emails: string[] }) {
+	return emails.map((email) => (
 		<ContactLink href={`mailto:${email}`}>
 			<Mail className={contactLinkContentClassName} />
 			<span className={className}>{email}</span>
 		</ContactLink>
-	)
+	))
 }
 
 export function ContactLinkDocker({ className, docker }: { className?: string; docker: string }) {
@@ -62,13 +62,21 @@ export function ContactLinkGithub({
 	)
 }
 
-export function ContactLinkPhone({ className, phone }: { className?: string; phone: string }) {
-	return (
-		<ContactLink href={`tel:${phone}`}>
-			<Phone className={contactLinkContentClassName} />
+export function ContactLinkPhone({ className, phones }: { className?: string; phones: string[] }) {
+	function toWhatsapp(phone: string) {
+		return phone
+			.replaceAll('(', '')
+			.replaceAll(')', '')
+			.replaceAll(' ', '')
+			.replaceAll('-', '')
+			.replaceAll('+', '')
+	}
+	return phones.map((phone) => (
+		<ContactLink href={`https://wa.me/:${toWhatsapp(phone)}`}>
+			<FontAwesomeIcon className={contactLinkContentClassName} icon={faWhatsapp} />
 			<span className={className}>{phone}</span>
 		</ContactLink>
-	)
+	))
 }
 
 export function ContactLinkPlace({ className, place }: { className?: string; place: string }) {
