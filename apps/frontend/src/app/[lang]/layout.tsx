@@ -11,6 +11,8 @@ import { useLang } from '@/hooks/use-lang'
 import { useNavigateTo } from '@/hooks/use-navigateTo'
 import { useStrings } from '@/hooks/use-strings'
 import './globals.css'
+import { LangToggle } from '@/components/lang-toggle'
+import NavFloatingMenu from '@/components/nav-floating-menu'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -35,6 +37,9 @@ export default async function RootLayout({ children, params }: Props) {
 	const strings = await useStrings(lang)
 	const layoutStrings = strings.home.layout
 
+	const navItems = Object.values(layoutStrings.nav)
+	const navLinks = ['', 'projects', 'certificates', 'contact']
+
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<body className={inter.className}>
@@ -53,42 +58,18 @@ export default async function RootLayout({ children, params }: Props) {
 									</Link>
 								</div>
 								<nav className="hidden md:flex gap-6">
-									<Link
-										href={useNavigateTo(lang)}
-										className="text-sm font-medium hover:underline underline-offset-4"
-									>
-										{layoutStrings.nav.home}
-									</Link>
-									<Link
-										href={useNavigateTo(lang, 'projects')}
-										className="text-sm font-medium hover:underline underline-offset-4"
-									>
-										{layoutStrings.nav.projects}
-									</Link>
-									<Link
-										href={useNavigateTo(lang, 'certificates')}
-										className="text-sm font-medium hover:underline underline-offset-4"
-									>
-										{layoutStrings.nav.certificates}
-									</Link>
-									<Link
-										href={useNavigateTo(lang, 'contact')}
-										className="text-sm font-medium hover:underline underline-offset-4"
-									>
-										{layoutStrings.nav.contact}
-									</Link>
+									{navItems.map((item, idx) => (
+										<Link
+											href={useNavigateTo(lang, navLinks[idx] ?? '')}
+											key={idx}
+											className="text-sm font-medium hover:underline underline-offset-4"
+										>
+											{item}
+										</Link>
+									))}
 								</nav>
 								<div className="flex items-center gap-2">
-									<Link href="../en" rel="noopener noreferrer">
-										<Button variant="ghost" size="icon">
-											<span className="h-5 w-5">EN</span>
-										</Button>
-									</Link>
-									<Link href="../pt" rel="noopener noreferrer">
-										<Button variant="ghost" size="icon">
-											<span className="h-5 w-5">PT</span>
-										</Button>
-									</Link>
+									<LangToggle lang={lang} />
 									<Link
 										href={strings.github}
 										target="_blank"
@@ -100,25 +81,11 @@ export default async function RootLayout({ children, params }: Props) {
 										</Button>
 									</Link>
 									<ModeToggle />
-									<Button className="md:hidden" variant="ghost" size="icon">
-										<span className="sr-only">Toggle menu</span>
-										<svg
-											xmlns="http://www.w3.org/2000/svg"
-											width="24"
-											height="24"
-											viewBox="0 0 24 24"
-											fill="none"
-											stroke="currentColor"
-											strokeWidth="2"
-											strokeLinecap="round"
-											strokeLinejoin="round"
-											className="h-6 w-6"
-										>
-											<line x1="4" x2="20" y1="12" y2="12" />
-											<line x1="4" x2="20" y1="6" y2="6" />
-											<line x1="4" x2="20" y1="18" y2="18" />
-										</svg>
-									</Button>
+									<NavFloatingMenu
+										items={navItems}
+										lang={lang}
+										links={navLinks}
+									/>
 								</div>
 							</div>
 						</header>

@@ -6,6 +6,8 @@ import { faDocker, faGithub, faWhatsapp } from '@fortawesome/free-brands-svg-ico
 
 import { cn } from '@/lib/utils'
 
+import { Button } from './button'
+
 export const ContactLink = React.forwardRef<
 	HTMLAnchorElement,
 	React.HTMLAttributes<HTMLAnchorElement> & {
@@ -58,6 +60,25 @@ export function ContactLinkGithub({
 		<ContactLink href={github}>
 			<FontAwesomeIcon className={contactLinkContentClassName} icon={faGithub} />
 			<span className={className}>{text}</span>
+		</ContactLink>
+	)
+}
+
+export function ContactLinkGithubButton({
+	className,
+	github,
+	text = 'GitHub',
+}: {
+	className?: string
+	github: string
+	text?: string
+}) {
+	return (
+		<ContactLink href={github}>
+			<Button>
+				<FontAwesomeIcon className={contactLinkContentClassName} icon={faGithub} />
+				<span className={className}>{text}</span>
+			</Button>
 		</ContactLink>
 	)
 }

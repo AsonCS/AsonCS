@@ -1,11 +1,12 @@
 {
 	"home": {
 		"layout": {
+			"# Nav Reflects navigation bar order": "",
 			"nav": {
-				"certificates": "Certificados",
-				"contact": "Contato",
 				"home": "Início",
-				"projects": "Projetos"
+				"projects": "Projetos",
+				"certificates": "Certificados",
+				"contact": "Contato"
 			}
 		},
 		"metadata": {
@@ -17,7 +18,15 @@
 	},
 	"projects": {
 		"card": {
-			"code": "Código"
-		}
+			"code": "Código",
+			"no_description": "Nenhuma descrição disponível"
+		},
+		"empty": {
+			"check_later": "Volte mais tarde ou visite meu perfil do GitHub diretamente",
+			"not_found": "Nenhum repositório encontrado",
+			"visit_github": "Visitar perfil do GitHub"
+		},
+		"subtitle": "Explore meus projetos e contribuições mais recentes no GitHub",
+		"title": "Meus projetos no GitHub"
 	}
 }

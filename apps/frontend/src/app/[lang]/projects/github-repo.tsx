@@ -2,6 +2,8 @@ import { ExternalLink, Github, Star } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
 
+import { Lang } from '@ason_cs_ts/i18n'
+
 import { Button } from '@/components/ui/button'
 import {
 	Card,
@@ -13,11 +15,13 @@ import {
 } from '@/components/ui/card'
 import { RepoLanguage } from '@/components/ui/span'
 import { useStrings } from '@/hooks/use-strings'
-import { getGithubRepoAction } from './get-github-repo.action'
 
-export default async function GitHubRepos() {
-	const strings = await useStrings()
-	const card = strings.projects.card
+import { getGithubRepoAction } from './get-github-repo.action'
+import { ContactLinkGithubButton } from '@/components/ui/link'
+
+export default async function GitHubRepos({ lang }: { lang: Lang }) {
+	const strings = await useStrings(lang)
+	const projects = strings.projects
 	const repos = await getGithubRepoAction(strings.username)
 
 	return repos.length > 0 ? (
@@ -35,7 +39,7 @@ export default async function GitHubRepos() {
 				</CardHeader>
 				<CardContent className="grow">
 					<p className="text-sm text-gray-500 dark:text-gray-400 line-clamp-6">
-						{repo.description || 'No description available'}
+						{repo.description || projects.card.no_description}
 					</p>
 				</CardContent>
 				<CardFooter className="flex justify-between">
@@ -47,14 +51,14 @@ export default async function GitHubRepos() {
 						<Link href={repo.html_url} target="_blank" rel="noopener noreferrer">
 							<Button size="sm" variant="outline">
 								<Github className="mr-2 h-4 w-4" />
-								{card.code}
+								{projects.card.code}
 							</Button>
 						</Link>
 						{repo.homepage && (
 							<Link href={repo.homepage} target="_blank" rel="noopener noreferrer">
 								<Button size="sm">
 									<ExternalLink className="mr-2 h-4 w-4" />
-									Demo
+									{projects.card.demo}
 								</Button>
 							</Link>
 						)}
@@ -64,21 +68,11 @@ export default async function GitHubRepos() {
 		))
 	) : (
 		<div className="col-span-full flex flex-col items-center justify-center py-12 text-center">
-			<p className="text-lg text-gray-500 dark:text-gray-400">No repositories found</p>
-			<p className="text-sm text-gray-400 dark:text-gray-500">
-				Check back later or visit my GitHub profile directly
+			<p className="text-lg text-gray-500 dark:text-gray-400">{projects.empty.not_found}</p>
+			<p className="mb-4 text-sm text-gray-400 dark:text-gray-500">
+				{projects.empty.check_later}
 			</p>
-			<Link
-				href="https://github.com/andersoncosta-dev"
-				target="_blank"
-				rel="noopener noreferrer"
-				className="mt-4"
-			>
-				<Button>
-					<Github className="mr-2 h-4 w-4" />
-					Visit GitHub Profile
-				</Button>
-			</Link>
+			<ContactLinkGithubButton github={strings.github} text={projects.empty.visit_github} />
 		</div>
 	)
 }

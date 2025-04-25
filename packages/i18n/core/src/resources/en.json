@@ -1,11 +1,12 @@
 {
 	"home": {
 		"layout": {
+			"# Nav Reflects navigation bar order": "",
 			"nav": {
-				"certificates": "Certificates",
-				"contact": "Contact",
 				"home": "Home",
-				"projects": "Projects"
+				"projects": "Projects",
+				"certificates": "Certificates",
+				"contact": "Contact"
 			}
 		},
 		"metadata": {
@@ -16,7 +17,15 @@
 	},
 	"projects": {
 		"card": {
-			"code": "Code"
-		}
+			"code": "Code",
+			"no_description": "No description available"
+		},
+		"empty": {
+			"check_later": "Check back later or visit my GitHub profile directly",
+			"not_found": "No repositories found",
+			"visit_github": "Visit GitHub Profile"
+		},
+		"subtitle": "Explore my latest projects and contributions on GitHub",
+		"title": "My GitHub Projects"
 	}
 }
