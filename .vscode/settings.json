@@ -1,6 +1,6 @@
 {
 	"code-runner.executorMap": {
+		"python": "python3",
 		"typescript": "npx tsx"
-	},
-	"cSpell.words": ["Ason"]
+	}
 }

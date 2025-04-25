@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Link from 'next/link'
-import { Mail, MapPin, Phone } from 'lucide-react'
+import { Mail, MapPin } from 'lucide-react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDocker, faGithub, faWhatsapp } from '@fortawesome/free-brands-svg-icons'
 
@@ -28,8 +28,8 @@ ContactLink.displayName = 'ContactLink'
 const contactLinkContentClassName = 'h-5 w-5 mr-1'
 
 export function ContactLinkEmail({ className, emails }: { className?: string; emails: string[] }) {
-	return emails.map((email) => (
-		<ContactLink href={`mailto:${email}`}>
+	return emails.map((email, idx) => (
+		<ContactLink key={idx} href={`mailto:${email}`}>
 			<Mail className={contactLinkContentClassName} />
 			<span className={className}>{email}</span>
 		</ContactLink>
@@ -71,8 +71,8 @@ export function ContactLinkPhone({ className, phones }: { className?: string; ph
 			.replaceAll('-', '')
 			.replaceAll('+', '')
 	}
-	return phones.map((phone) => (
-		<ContactLink href={`https://wa.me/:${toWhatsapp(phone)}`}>
+	return phones.map((phone, idx) => (
+		<ContactLink key={idx} href={`https://wa.me/:${toWhatsapp(phone)}`}>
 			<FontAwesomeIcon className={contactLinkContentClassName} icon={faWhatsapp} />
 			<span className={className}>{phone}</span>
 		</ContactLink>
