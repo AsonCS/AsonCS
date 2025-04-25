@@ -14,5 +14,10 @@
 			"title_bkp": "Test",
 			"title": "Anderson Costa da Silva - Portfólio - AsonCS TS"
 		}
+	},
+	"projects": {
+		"card": {
+			"code": "Código"
+		}
 	}
 }

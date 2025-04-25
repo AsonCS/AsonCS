@@ -4,9 +4,9 @@ import { Calendar, ExternalLink } from 'lucide-react'
 
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { RESOURCES_CERTIFICATES } from '@/lib/firebase/storage'
-import { fetchWithCache } from '@/lib/utils'
 
 import certificatesJson from '../../../../public/resources/certificates/certificates.json'
+import { fetchDefault } from '@/lib/utils'
 
 type Certificate = {
 	title: string
@@ -26,7 +26,7 @@ type Props = {
 export const revalidate = 3600
 
 export default async function CertificatesPage() {
-	const certificates = await fetchWithCache<Certificate[]>(
+	const certificates = await fetchDefault().fetchWithCache<Certificate[]>(
 		RESOURCES_CERTIFICATES,
 		certificatesJson
 	)

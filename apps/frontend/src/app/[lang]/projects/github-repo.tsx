@@ -1,3 +1,7 @@
+import { ExternalLink, Github, Star } from 'lucide-react'
+import Link from 'next/link'
+import React from 'react'
+
 import { Button } from '@/components/ui/button'
 import {
 	Card,
@@ -9,17 +13,14 @@ import {
 } from '@/components/ui/card'
 import { RepoLanguage } from '@/components/ui/span'
 import { useStrings } from '@/hooks/use-strings'
-import getGithubRepoUsecase from '@/usecase/get-github-repo.usecase'
-import { ExternalLink, Github, Star } from 'lucide-react'
-import Link from 'next/link'
-import React from 'react'
+import { getGithubRepoAction } from './get-github-repo.action'
 
 export default async function GitHubRepos() {
 	const strings = await useStrings()
-	const repos = await getGithubRepoUsecase().execute(strings.username)
+	const card = strings.projects.card
+	const repos = await getGithubRepoAction(strings.username)
 
 	return repos.length > 0 ? (
-		// Actual repos
 		repos.map((repo) => (
 			<Card key={repo.id} className="overflow-hidden flex flex-col">
 				<CardHeader className="pb-2">
@@ -28,7 +29,7 @@ export default async function GitHubRepos() {
 						{repo.technologies.length > 0
 							? repo.technologies.map((technology, idx) => (
 									<RepoLanguage key={idx}>{technology}</RepoLanguage>
-							  ))
+								))
 							: null}
 					</CardDescription>
 				</CardHeader>
@@ -46,7 +47,7 @@ export default async function GitHubRepos() {
 						<Link href={repo.html_url} target="_blank" rel="noopener noreferrer">
 							<Button size="sm" variant="outline">
 								<Github className="mr-2 h-4 w-4" />
-								Code
+								{card.code}
 							</Button>
 						</Link>
 						{repo.homepage && (
