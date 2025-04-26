@@ -51,13 +51,13 @@ export default async function Home({ params }: Props) {
 										{strings.name}
 									</h1>
 									<p className="max-w-[600px] text-gray-500 md:text-xl dark:text-gray-400">
-										Software Developer & Technology Enthusiast
+										{strings.home.subtitle}
 									</p>
 								</div>
 								<div className="flex flex-col gap-2 min-[400px]:flex-row">
 									<Link href={useNavigateTo(lang, 'projects')}>
 										<Button className="w-full min-[400px]:w-auto">
-											View Projects
+											{strings.home.view_projects}
 										</Button>
 									</Link>
 									<Link href={useNavigateTo(lang, 'certificates')}>
@@ -65,7 +65,7 @@ export default async function Home({ params }: Props) {
 											className="w-full min-[400px]:w-auto"
 											variant="outline"
 										>
-											View Certificates
+											{strings.home.view_certificates}
 										</Button>
 									</Link>
 								</div>
@@ -80,7 +80,7 @@ export default async function Home({ params }: Props) {
 										<div className="space-y-4">
 											<div className="space-y-2">
 												<h2 className="text-xl font-bold">
-													Business Information
+													{strings.contact.info.title}
 												</h2>
 												<div className="text-sm text-gray-500 dark:text-gray-400">
 													<div className="flex items-center gap-2">
@@ -91,7 +91,7 @@ export default async function Home({ params }: Props) {
 													</div>
 													<div className="flex items-center gap-2">
 														<span className="font-medium">
-															Business Name:
+															{strings.contact.info.name}:
 														</span>
 														<span>
 															36.217.301 ANDERSON COSTA DA SILVA
@@ -100,7 +100,9 @@ export default async function Home({ params }: Props) {
 												</div>
 											</div>
 											<div className="space-y-2">
-												<h3 className="text-lg font-medium">Contact</h3>
+												<h3 className="text-lg font-medium">
+													{strings.contact.info.info}
+												</h3>
 												<div className="grid gap-2 text-sm">
 													<ContactLinkPhone
 														phones={[strings.phone, strings.phone2]}
@@ -127,7 +129,7 @@ export default async function Home({ params }: Props) {
 						<div className="flex flex-col items-center justify-center space-y-4 text-center">
 							<div className="space-y-2">
 								<h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-									About Me
+									{strings.home.about_me}
 								</h2>
 								<p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
 									{remote.about_me}
@@ -140,7 +142,8 @@ export default async function Home({ params }: Props) {
 			<footer className="w-full border-t bg-gray-100 py-6 dark:bg-gray-900">
 				<div className="container flex flex-col items-center justify-center gap-4 px-4 md:px-6">
 					<p className="text-sm text-gray-500 dark:text-gray-400">
-						© {new Date().getFullYear()} Anderson Costa da Silva. All rights reserved.
+						© {new Date().getFullYear()} Anderson Costa da Silva. {strings.home.rights}
+						.
 					</p>
 					<div className="flex items-center gap-4">
 						<ContactLinkGithub className="sr-only" github={strings.github} />

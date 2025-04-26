@@ -1,5 +1,35 @@
 {
+	"certificates": {
+		"card": {
+			"view": "View Certificate"
+		},
+		"subtitle": "Professional certifications and courses I've completed",
+		"title": "My Certificates"
+	},
+	"contact": {
+		"info": {
+			"detail": "Business Details",
+			"info": "Contact Information",
+			"name": "Business Name",
+			"subtitle": "My official business details",
+			"title": "Business Information"
+		},
+		"form": {
+			"message": "Message",
+			"message_placeholder": "Your message",
+			"name": "Name",
+			"name_placeholder": "Your name",
+			"send": "Send message",
+			"subject": "Subject",
+			"subject_placeholder": "What is this regarding?",
+			"subtitle": "Fill out the form below to get in touch",
+			"title": "Send a Message"
+		},
+		"subtitle": "Get in touch for business inquiries or project collaboration",
+		"title": "Contact Me"
+	},
 	"home": {
+		"about_me": "About Me",
 		"layout": {
 			"# Nav Reflects navigation bar order": "",
 			"nav": {
@@ -13,7 +43,11 @@
 			"description": "Personal portfolio website of Anderson Costa da Silva, showcasing projects, certificates, and business information.",
 			"generator": "v0.dev",
 			"title": "Anderson Costa da Silva - Portfolio - AsonCS TS"
-		}
+		},
+		"rights": "All rights reserved",
+		"subtitle": "Software Developer & Technology Enthusiast",
+		"view_certificates": "View Certificates",
+		"view_projects": "View Projects"
 	},
 	"projects": {
 		"card": {

@@ -15,8 +15,41 @@ export const notTranslatable = {
 	username: 'AsonCS',
 }
 
+export type TranslatableCertificates = {
+	card: {
+		view: string
+	}
+	subtitle: string
+	title: string
+}
+export type TranslatableContactForm = {
+	message: string
+	message_placeholder: string
+	name: string
+	name_placeholder: string
+	send: string
+	subject: string
+	subject_placeholder: string
+	subtitle: string
+	title: string
+}
+export type TranslatableContact = {
+	info: {
+		detail: string
+		info: string
+		name: string
+		subtitle: string
+		title: string
+	}
+	form: TranslatableContactForm
+	subtitle: string
+	title: string
+}
 export type Translatable = {
+	certificates: TranslatableCertificates
+	contact: TranslatableContact
 	home: {
+		about_me: string
 		layout: {
 			nav: {
 				// Reflects navigation bar order
@@ -31,6 +64,10 @@ export type Translatable = {
 			generator: string
 			title: string
 		}
+		rights: string
+		subtitle: string
+		view_certificates: string
+		view_projects: string
 	}
 	projects: {
 		card: {

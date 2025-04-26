@@ -7,6 +7,8 @@ import { RESOURCES_CERTIFICATES } from '@/lib/firebase/storage'
 
 import certificatesJson from '../../../../public/resources/certificates/certificates.json'
 import { fetchDefault } from '@/lib/utils'
+import { useLang } from '@/hooks/use-lang'
+import { useStrings } from '@/hooks/use-strings'
 
 type Certificate = {
 	title: string
@@ -25,7 +27,11 @@ type Props = {
 
 export const revalidate = 3600
 
-export default async function CertificatesPage() {
+export default async function CertificatesPage({ params }: Props) {
+	const lang = await useLang(params)
+	const strings = await useStrings(lang)
+	const certificatesStrings = strings.certificates
+
 	const certificates = await fetchDefault().fetchWithCache<Certificate[]>(
 		RESOURCES_CERTIFICATES,
 		certificatesJson
@@ -46,10 +52,10 @@ export default async function CertificatesPage() {
 			<div className="flex flex-col items-center justify-center space-y-4 text-center">
 				<div className="space-y-2">
 					<h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-						My Certificates
+						{certificatesStrings.title}
 					</h1>
 					<p className="max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-						Professional certifications and courses I've completed
+						{certificatesStrings.subtitle}
 					</p>
 				</div>
 			</div>
@@ -95,7 +101,7 @@ export default async function CertificatesPage() {
 							<Link href={certificate.url} target="_blank" rel="noopener noreferrer">
 								<div className="flex items-center text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50">
 									<ExternalLink className="mr-1 h-4 w-4" />
-									<span>View Certificate</span>
+									<span>{certificatesStrings.card.view}</span>
 								</div>
 							</Link>
 						</CardFooter>

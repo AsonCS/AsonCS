@@ -9,7 +9,7 @@ export interface I18nRepository {
 export default function i18nRepository(): I18nRepository {
 	return {
 		get(lang) {
-			return resources[lang ?? Lang.PT] ?? resources[Lang.PT]
+			return (resources[lang ?? Lang.PT] ?? resources[Lang.PT]) as any
 		},
 	}
 }
