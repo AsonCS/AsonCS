@@ -1,4 +1,4 @@
-import i18nRepository, { I18nRepository } from './i18n.repository'
+import i18nProvider, { I18nProvider } from './i18n.provider'
 
-export type { I18nRepository }
-export { i18nRepository }
+export type { I18nProvider }
+export { i18nProvider }
