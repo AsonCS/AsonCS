@@ -1,5 +1,9 @@
 import { credential } from 'firebase-admin'
-import { App, getApp, initializeApp } from 'firebase-admin/app'
+import {
+	App,
+	getApp,
+	initializeApp,
+} from 'firebase-admin/app'
 import {
 	getRemoteConfig,
 	RemoteConfig,
@@ -7,7 +11,7 @@ import {
 	ServerTemplate,
 } from 'firebase-admin/remote-config'
 
-import { Langs } from '@/hooks/use-strings'
+import { Lang } from '@ason_cs_ts/i18n'
 
 const KEY_ABOUT_ME = 'about_me'
 export type DefaultConfig = {
@@ -36,7 +40,10 @@ try {
 				// Initialize Firebase
 				firebaseApp = initializeApp({
 					credential: credential.cert(
-						JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS)
+						JSON.parse(
+							process.env
+								.GOOGLE_APPLICATION_CREDENTIALS
+						)
 					),
 				})
 			}
@@ -52,13 +59,17 @@ try {
 	if (!remoteConfig && firebaseApp) {
 		// Initialize server-side Remote Config
 		remoteConfig = getRemoteConfig(firebaseApp)
-		template = remoteConfig.initServerTemplate({ defaultConfig })
+		template = remoteConfig.initServerTemplate({
+			defaultConfig,
+		})
 	}
 } catch (e) {
 	console.error('Initialize server-side Remote Config', e)
 }
 
-export async function remoteConfigAll(lang: Langs): Promise<DefaultConfig> {
+export async function remoteConfigAll(
+	lang: Lang
+): Promise<DefaultConfig> {
 	if (!template) {
 		return defaultConfig
 	}
