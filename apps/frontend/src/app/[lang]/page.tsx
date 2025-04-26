@@ -19,8 +19,6 @@ type Props = {
 	params: Promise<{ lang: string }>
 }
 
-export const revalidate = 3600
-
 export default async function Home({ params }: Props) {
 	const lang = await useLang(params)
 	const strings = await useStrings(lang)
@@ -51,27 +49,54 @@ export default async function Home({ params }: Props) {
 										{strings.name}
 									</h1>
 									<p className="max-w-[600px] text-gray-500 md:text-xl dark:text-gray-400">
-										{strings.home.subtitle}
+										{
+											strings.home
+												.subtitle
+										}
 									</p>
 								</div>
 								<div className="flex flex-col gap-2 min-[400px]:flex-row">
-									<Link href={useNavigateTo(lang, 'projects')}>
+									<Link
+										href={useNavigateTo(
+											lang,
+											'projects'
+										)}
+									>
 										<Button className="w-full min-[400px]:w-auto">
-											{strings.home.view_projects}
+											{
+												strings.home
+													.view_projects
+											}
 										</Button>
 									</Link>
-									<Link href={useNavigateTo(lang, 'certificates')}>
+									<Link
+										href={useNavigateTo(
+											lang,
+											'certificates'
+										)}
+									>
 										<Button
 											className="w-full min-[400px]:w-auto"
 											variant="outline"
 										>
-											{strings.home.view_certificates}
+											{
+												strings.home
+													.view_certificates
+											}
 										</Button>
 									</Link>
 								</div>
 								<div className="flex items-center gap-4 text-sm">
-									<ContactLinkGithub github={strings.github} />
-									<ContactLinkDocker docker={strings.docker_hub} />
+									<ContactLinkGithub
+										github={
+											strings.github
+										}
+									/>
+									<ContactLinkDocker
+										docker={
+											strings.docker_hub
+										}
+									/>
 								</div>
 							</div>
 							<div className="flex items-center justify-center">
@@ -80,39 +105,73 @@ export default async function Home({ params }: Props) {
 										<div className="space-y-4">
 											<div className="space-y-2">
 												<h2 className="text-xl font-bold">
-													{strings.contact.info.title}
+													{
+														strings
+															.contact
+															.info
+															.title
+													}
 												</h2>
 												<div className="text-sm text-gray-500 dark:text-gray-400">
 													<div className="flex items-center gap-2">
 														<span className="font-medium pr-12">
 															CNPJ:
 														</span>
-														<span>36.217.301/0001-19</span>
+														<span>
+															36.217.301/0001-19
+														</span>
 													</div>
 													<div className="flex items-center gap-2">
 														<span className="font-medium">
-															{strings.contact.info.name}:
+															{
+																strings
+																	.contact
+																	.info
+																	.name
+															}
+															:
 														</span>
 														<span>
-															36.217.301 ANDERSON COSTA DA SILVA
+															36.217.301
+															ANDERSON
+															COSTA
+															DA
+															SILVA
 														</span>
 													</div>
 												</div>
 											</div>
 											<div className="space-y-2">
 												<h3 className="text-lg font-medium">
-													{strings.contact.info.info}
+													{
+														strings
+															.contact
+															.info
+															.info
+													}
 												</h3>
 												<div className="grid gap-2 text-sm">
 													<ContactLinkPhone
-														phones={[strings.phone, strings.phone2]}
+														phones={[
+															strings.phone,
+															strings.phone2,
+														]}
 													/>
 													<ContactLinkEmail
-														emails={[strings.email, strings.email2]}
+														emails={[
+															strings.email,
+															strings.email2,
+														]}
 													/>
-													<ContactLinkPlace place={strings.place} />
+													<ContactLinkPlace
+														place={
+															strings.place
+														}
+													/>
 													<ContactLinkGithub
-														github={strings.github}
+														github={
+															strings.github
+														}
 														text={`github.com/${strings.username}`}
 													/>
 												</div>
@@ -142,14 +201,21 @@ export default async function Home({ params }: Props) {
 			<footer className="w-full border-t bg-gray-100 py-6 dark:bg-gray-900">
 				<div className="container flex flex-col items-center justify-center gap-4 px-4 md:px-6">
 					<p className="text-sm text-gray-500 dark:text-gray-400">
-						© {new Date().getFullYear()} Anderson Costa da Silva. {strings.home.rights}
-						.
+						© {new Date().getFullYear()}{' '}
+						Anderson Costa da Silva.{' '}
+						{strings.home.rights}.
 					</p>
 					<div className="flex items-center gap-4">
-						<ContactLinkGithub className="sr-only" github={strings.github} />
+						<ContactLinkGithub
+							className="sr-only"
+							github={strings.github}
+						/>
 						<ContactLinkEmail
 							className="sr-only"
-							emails={[strings.email, strings.email2]}
+							emails={[
+								strings.email,
+								strings.email2,
+							]}
 						/>
 					</div>
 				</div>

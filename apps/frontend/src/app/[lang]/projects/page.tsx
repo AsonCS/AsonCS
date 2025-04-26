@@ -1,19 +1,21 @@
 import { Suspense } from 'react'
 
-import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
-import { Skeleton } from '@/components/ui/skeleton'
 import { useLang } from '@/hooks/use-lang'
 import { useStrings } from '@/hooks/use-strings'
 
-import GitHubRepos from './github-repo'
+import GitHubRepos, {
+	GitHubReposSkeleton,
+} from './github-repo'
 
-export const revalidate = 3600
+export const revalidate = 3600 // In seconds
 
 type Props = {
 	params: Promise<{ lang: string }>
 }
 
-export default async function ProjectsPage({ params }: Props) {
+export default async function ProjectsPage({
+	params,
+}: Props) {
 	const lang = await useLang(params)
 	const strings = await useStrings(lang)
 	const projects = strings.projects
@@ -33,26 +35,7 @@ export default async function ProjectsPage({ params }: Props) {
 
 			<div className="grid gap-6 pt-12 md:grid-cols-2 lg:grid-cols-3">
 				<Suspense
-					fallback={
-						// Loading skeletons
-						Array(6)
-							.fill(0)
-							.map((_, index) => (
-								<Card key={index} className="overflow-hidden">
-									<CardHeader className="pb-2">
-										<Skeleton className="h-6 w-3/4" />
-										<Skeleton className="h-4 w-full" />
-									</CardHeader>
-									<CardContent>
-										<Skeleton className="h-20 w-full" />
-									</CardContent>
-									<CardFooter className="flex justify-between">
-										<Skeleton className="h-9 w-20" />
-										<Skeleton className="h-9 w-20" />
-									</CardFooter>
-								</Card>
-							))
-					}
+					fallback={<GitHubReposSkeleton />}
 				>
 					<GitHubRepos lang={lang} />
 				</Suspense>

@@ -9,7 +9,10 @@ export function cn(...inputs: ClassValue[]) {
 
 export function fetchDefault(): Fetch {
 	return {
-		async fetchWithCache<R>(url: string, defaultValue: R): Promise<R> {
+		async fetchWithCache<R>(
+			url: string,
+			defaultValue: R
+		): Promise<R> {
 			const res = await fetch(url, {
 				cache: 'force-cache',
 				next: {
@@ -18,7 +21,11 @@ export function fetchDefault(): Fetch {
 			})
 				.then((res) => res.json())
 				.catch((error) => {
-					console.error('fetchWithCache', url, error)
+					console.error(
+						'fetchWithCache',
+						url,
+						error
+					)
 					return defaultValue
 				})
 
@@ -26,4 +33,10 @@ export function fetchDefault(): Fetch {
 			return res
 		},
 	}
+}
+
+export async function sleep() {
+	await new Promise((resolve) =>
+		setTimeout(() => resolve(''), 3_000)
+	)
 }
