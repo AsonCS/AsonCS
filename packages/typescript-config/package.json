@@ -1,0 +1,8 @@
+{
+	"name": "@ason_cs_ts/typescript-config",
+	"version": "0.1.0",
+	"private": true,
+	"publishConfig": {
+		"access": "public"
+	}
+}

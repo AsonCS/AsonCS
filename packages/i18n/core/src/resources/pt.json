@@ -1,0 +1,66 @@
+{
+	"certificates": {
+		"card": {
+			"view": "Ver Certificado"
+		},
+		"subtitle": "Certifications processionais e cursos que completei",
+		"title": "Meus Certificados"
+	},
+	"contact": {
+		"info": {
+			"detail": "Detalhes do negócio",
+			"info": "Informações de contacto",
+			"name": "Nome do negócio",
+			"subtitle": "Detalhes oficiais do negócio",
+			"title": "Informações do negócio"
+		},
+		"form": {
+			"message": "Mensagem",
+			"message_placeholder": "Sua mensagem",
+			"name": "Nome",
+			"name_placeholder": "Seu nome",
+			"send": "Enviar mensagem",
+			"subject": "Assunto",
+			"subject_placeholder": "Do que se trata?",
+			"subtitle": "Preencha o formulário abaixo para entrar em contacto",
+			"title": "Enviar uma Mensagem"
+		},
+		"subtitle": "Contacte para consultas comerciais ou colaboração em projetos",
+		"title": "Entre em contacto comigo"
+	},
+	"home": {
+		"about_me": "Sobre Mim",
+		"layout": {
+			"# Nav Reflects navigation bar order": "",
+			"nav": {
+				"home": "Início",
+				"projects": "Projetos",
+				"certificates": "Certificados",
+				"contact": "Contato"
+			}
+		},
+		"metadata": {
+			"description": "Meu site de portfólio, exibindo projetos, certificados e informações comerciais.",
+			"generator": "v0.dev",
+			"title_bkp": "Test",
+			"title": "Anderson Costa da Silva - Portfólio - AsonCS TS"
+		},
+		"rights": "Todos os direitos reservados",
+		"subtitle": "Desenvolvedor de Software & Entusiasta de Tecnologia",
+		"view_certificates": "Ver Certificados",
+		"view_projects": "Ver Projetos"
+	},
+	"projects": {
+		"card": {
+			"code": "Código",
+			"no_description": "Nenhuma descrição disponível"
+		},
+		"empty": {
+			"check_later": "Volte mais tarde ou visite meu perfil do GitHub diretamente",
+			"not_found": "Nenhum repositório encontrado",
+			"visit_github": "Visitar perfil do GitHub"
+		},
+		"subtitle": "Explore meus projetos e contribuições mais recentes no GitHub",
+		"title": "Meus projetos no GitHub"
+	}
+}

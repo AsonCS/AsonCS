@@ -1,0 +1,65 @@
+{
+	"certificates": {
+		"card": {
+			"view": "View Certificate"
+		},
+		"subtitle": "Professional certifications and courses I've completed",
+		"title": "My Certificates"
+	},
+	"contact": {
+		"info": {
+			"detail": "Business Details",
+			"info": "Contact Information",
+			"name": "Business Name",
+			"subtitle": "My official business details",
+			"title": "Business Information"
+		},
+		"form": {
+			"message": "Message",
+			"message_placeholder": "Your message",
+			"name": "Name",
+			"name_placeholder": "Your name",
+			"send": "Send message",
+			"subject": "Subject",
+			"subject_placeholder": "What is this regarding?",
+			"subtitle": "Fill out the form below to get in touch",
+			"title": "Send a Message"
+		},
+		"subtitle": "Get in touch for business inquiries or project collaboration",
+		"title": "Contact Me"
+	},
+	"home": {
+		"about_me": "About Me",
+		"layout": {
+			"# Nav Reflects navigation bar order": "",
+			"nav": {
+				"home": "Home",
+				"projects": "Projects",
+				"certificates": "Certificates",
+				"contact": "Contact"
+			}
+		},
+		"metadata": {
+			"description": "My portfolio website, showcasing projects, certificates, and business information.",
+			"generator": "v0.dev",
+			"title": "Anderson Costa da Silva - Portfolio - AsonCS TS"
+		},
+		"rights": "All rights reserved",
+		"subtitle": "Software Developer & Technology Enthusiast",
+		"view_certificates": "View Certificates",
+		"view_projects": "View Projects"
+	},
+	"projects": {
+		"card": {
+			"code": "Code",
+			"no_description": "No description available"
+		},
+		"empty": {
+			"check_later": "Check back later or visit my GitHub profile directly",
+			"not_found": "No repositories found",
+			"visit_github": "Visit GitHub Profile"
+		},
+		"subtitle": "Explore my latest projects and contributions on GitHub",
+		"title": "My GitHub Projects"
+	}
+}
