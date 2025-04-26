@@ -30,4 +30,6 @@ next-env.d.ts
 
 # turbo
 dist/
+!packages/i18n/core/dist/
+!packages/shared/core/dist/
 .turbo/
