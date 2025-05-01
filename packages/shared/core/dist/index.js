@@ -1,1 +1,72 @@
-"use strict";var p=Object.defineProperty;var m=Object.getOwnPropertyDescriptor;var g=Object.getOwnPropertyNames;var b=Object.prototype.hasOwnProperty;var l=(r,e)=>{for(var o in e)p(r,o,{get:e[o],enumerable:!0})},f=(r,e,o,s)=>{if(e&&typeof e=="object"||typeof e=="function")for(let t of g(e))!b.call(r,t)&&t!==o&&p(r,t,{get:()=>e[t],enumerable:!(s=m(e,t))||s.enumerable});return r};var G=r=>f(p({},"__esModule",{value:!0}),r);var x={};l(x,{RESOURCES:()=>R,getGithubRepoUsecase:()=>u,githubRepository:()=>n});module.exports=G(x);function n(r){return{async repos(e){return r.fetchWithCache(`https://api.github.com/users/${e}/repos?sort=updated&per_page=100`,[])}}}function u(r){return{async execute(e){return r.repos(e).then(o=>{let s=[];return o.forEach(t=>{if(t.name===e)return;let a=(t.description??"").split(" | "),c=a[0]??"",h=(a[1]??"").split(", ").filter(i=>i.includes("{")).map(i=>i.replace("{ ","").replace(" }",""));s.push({description:c,homepage:t.homepage,html_url:t.html_url,id:t.id,name:t.name,technologies:h,stargazers_count:t.stargazers_count})}),s})}}}var R="https://firebasestorage.googleapis.com/v0/b/asoncs-ts.firebasestorage.app/o/resources";0&&(module.exports={RESOURCES,getGithubRepoUsecase,githubRepository});
+"use strict";
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  }
+  return to;
+};
+var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+
+// src/index.ts
+var index_exports = {};
+__export(index_exports, {
+  defaultGithubRepository: () => defaultGithubRepository,
+  getGithubRepoUsecase: () => getGithubRepoUsecase
+});
+module.exports = __toCommonJS(index_exports);
+
+// src/provider/github.repository.ts
+function defaultGithubRepository(fetch) {
+  return {
+    async repos(username) {
+      return fetch.fetchWithCache(
+        `https://api.github.com/users/${username}/repos?sort=updated&per_page=100`,
+        []
+      );
+    }
+  };
+}
+
+// src/usecase/get-github-repo.usecase.ts
+function getGithubRepoUsecase(githubRepository) {
+  return {
+    async execute(username) {
+      return githubRepository.repos(username).then((repos) => {
+        const result = [];
+        repos.forEach((repo) => {
+          if (repo.name === username) {
+            return;
+          }
+          const descriptionSplit = (repo.description ?? "").split(" | ");
+          const description = descriptionSplit[0] ?? "";
+          const technologies = (descriptionSplit[1] ?? "").split(", ").filter((desc) => desc.includes("{")).map((desc) => desc.replace("{ ", "").replace(" }", ""));
+          result.push({
+            description,
+            homepage: repo.homepage,
+            html_url: repo.html_url,
+            id: repo.id,
+            name: repo.name,
+            technologies,
+            stargazers_count: repo.stargazers_count
+          });
+        });
+        return result;
+      });
+    }
+  };
+}
+// Annotate the CommonJS export names for ESM import in node:
+0 && (module.exports = {
+  defaultGithubRepository,
+  getGithubRepoUsecase
+});

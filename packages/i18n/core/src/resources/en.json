@@ -29,7 +29,6 @@
 		"title": "Contact Me"
 	},
 	"home": {
-		"about_me": "About Me",
 		"layout": {
 			"# Nav Reflects navigation bar order": "",
 			"nav": {

@@ -18,7 +18,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { RepoLanguage } from '@/components/ui/span'
 import { useStrings } from '@/hooks/use-strings'
 
-import { getGithubRepoAction } from './get-github-repo.action'
+import { getGithubRepoAction } from './get_github_repo.action'
 
 type Props = {
 	lang: Lang

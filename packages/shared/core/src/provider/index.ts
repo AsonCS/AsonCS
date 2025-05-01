@@ -1,4 +1,6 @@
-import githubRepository, { GithubRepository } from './github.repository'
+import defaultGithubRepository, {
+	GithubRepository,
+} from './github.repository'
 
+export { defaultGithubRepository }
 export type { GithubRepository }
-export { githubRepository }

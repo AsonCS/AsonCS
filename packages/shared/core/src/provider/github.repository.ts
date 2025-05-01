@@ -13,7 +13,9 @@ export interface GithubRepository {
 	>
 }
 
-export default function githubRepository(fetch: Fetch): GithubRepository {
+export default function defaultGithubRepository(
+	fetch: Fetch
+): GithubRepository {
 	return {
 		async repos(username) {
 			return fetch.fetchWithCache(

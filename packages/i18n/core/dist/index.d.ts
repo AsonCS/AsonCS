@@ -50,7 +50,6 @@ type Translatable = {
     certificates: TranslatableCertificates;
     contact: TranslatableContact;
     home: {
-        about_me: string;
         layout: {
             nav: {
                 home: string;
@@ -95,7 +94,7 @@ declare function langs(): Lang[];
 interface I18nProvider {
     get(lang: Lang | undefined): Translatable;
 }
-declare function i18nProvider(): I18nProvider;
+declare function defaultI18nProvider(): I18nProvider;
 
 var certificates$2 = {
 	card: {
@@ -127,7 +126,6 @@ var contact$2 = {
 	title: "Contact Me"
 };
 var home$2 = {
-	about_me: "About Me",
 	layout: {
 		"# Nav Reflects navigation bar order": "",
 		nav: {
@@ -197,7 +195,6 @@ var contact$1 = {
 	title: "Contáctame"
 };
 var home$1 = {
-	about_me: "Sobre Mí",
 	layout: {
 		"# Nav Reflects navigation bar order": "",
 		nav: {
@@ -267,7 +264,6 @@ var contact = {
 	title: "Entre em contacto comigo"
 };
 var home = {
-	about_me: "Sobre Mim",
 	layout: {
 		"# Nav Reflects navigation bar order": "",
 		nav: {
@@ -312,4 +308,4 @@ interface GetStringsUsecase extends Usecase<Lang | undefined, Strings> {
 }
 declare function getStringsUsecase(i18nProvider: I18nProvider): GetStringsUsecase;
 
-export { type GetStringsUsecase, type I18nProvider, Lang, type Strings, type Translatable, type TranslatableCertificates, type TranslatableContact, type TranslatableContactForm, en, es, getStringsUsecase, i18nProvider, langs, notTranslatable, pt };
+export { type GetStringsUsecase, type I18nProvider, Lang, type Strings, type Translatable, type TranslatableCertificates, type TranslatableContact, type TranslatableContactForm, defaultI18nProvider, en, es, getStringsUsecase, langs, notTranslatable, pt };

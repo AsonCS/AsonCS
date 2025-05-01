@@ -8,6 +8,7 @@
 		"dev": "tsup src/index.ts --dts --watch"
 	},
 	"dependencies": {
+		"@ason_cs_ts/typescript-config": "*",
 		"tsup": "^8.4.0",
 		"uuid": "^11.1.0"
 	}

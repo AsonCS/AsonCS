@@ -1,5 +1,5 @@
 {
-	"name": "@ason_cs_ts/i18n",
+	"name": "@ason_cs_ts/shared-remote_config",
 	"version": "0.1.0",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
