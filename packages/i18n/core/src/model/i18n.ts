@@ -1,5 +1,6 @@
 export const notTranslatable = {
-	docker_hub: 'https://hub.docker.com/repositories/asoncs',
+	docker_hub:
+		'https://hub.docker.com/repositories/asoncs',
 	email: 'asoncsts@gmail.com',
 	email2: 'acsgsa92@gmail.com',
 	github: 'https://github.com/AsonCS',
@@ -49,7 +50,6 @@ export type Translatable = {
 	certificates: TranslatableCertificates
 	contact: TranslatableContact
 	home: {
-		about_me: string
 		layout: {
 			nav: {
 				// Reflects navigation bar order

@@ -7,11 +7,11 @@ import Certificates, {
 	CertificatesSkeleton,
 } from './certificates'
 
+export const revalidate = 3600 // In seconds
+
 type Props = {
 	params: Promise<{ lang: string }>
 }
-
-export const revalidate = 3600 // In seconds
 
 export default async function CertificatesPage({
 	params,

@@ -2,8 +2,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Calendar, ExternalLink } from 'lucide-react'
 
-import certificatesJson from '../../../../public/resources/certificates/certificates.json'
-
 import { Lang } from '@ason_cs_ts/i18n'
 
 import {
@@ -14,19 +12,8 @@ import {
 	CardTitle,
 } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
-import { RESOURCES_CERTIFICATES } from '@/lib/firebase/storage'
-import { fetchDefault } from '@/lib/utils'
 
-type Certificate = {
-	title: string
-	issuer: string
-	issuer_link: string
-	date: string
-	description: string
-	image: string
-	pdf: string
-	url: string
-}
+import { getResourcesCertificatesAction } from '../../actions/get_resources_certificates.action'
 
 type Props = {
 	cardView: string
@@ -38,10 +25,19 @@ export default async function Certificates({
 	lang,
 }: Props) {
 	const certificates =
-		await fetchDefault().fetchWithCache<Certificate[]>(
-			RESOURCES_CERTIFICATES,
-			certificatesJson
-		)
+		await getResourcesCertificatesAction()
+	certificates.sort((one, other) => {
+		if (one.dateYear === other.dateYear) {
+			if (one.dateMonth === other.dateMonth) {
+				if (one.dateDay === other.dateDay) {
+					return 0
+				}
+				return one.dateDay < other.dateDay ? 1 : -1
+			}
+			return one.dateMonth < other.dateMonth ? 1 : -1
+		}
+		return one.dateYear < other.dateYear ? 1 : -1
+	})
 
 	// Format date to a more readable format
 	const formatDate = (dateString: string) => {
@@ -76,7 +72,7 @@ export default async function Certificates({
 			<CardHeader className="pb-2">
 				<CardTitle>{certificate.title}</CardTitle>
 				<Link
-					href={certificate.issuer_link}
+					href={certificate.issuerLink ?? ''}
 					target="_blank"
 					rel="noopener noreferrer"
 				>
@@ -95,7 +91,9 @@ export default async function Certificates({
 				<div className="mt-2 flex items-center text-sm text-gray-500 dark:text-gray-400">
 					<Calendar className="mr-1 h-4 w-4" />
 					<span>
-						{formatDate(certificate.date)}
+						{formatDate(
+							`${certificate.dateYear}-${certificate.dateMonth}-${certificate.dateDay + 1}`
+						)}
 					</span>
 				</div>
 				<Link

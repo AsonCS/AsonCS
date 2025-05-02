@@ -23,11 +23,11 @@ export default function Form({ email, strings }: Props) {
 				e.preventDefault()
 				toast({
 					title: 'Message sent!',
-					description: "Thank you for your message. I'll get back to you soon.",
+					description:
+						"Thank you for your message. I'll get back to you soon.",
 				})
 				const { message, subject } = e.target as any
 				const mailto = `mailto:${email}?subject=${subject.value}&body=${message.value}`
-				console.log(mailto)
 				window.open(mailto)
 				setTimeout(() => {
 					location.reload()
@@ -36,28 +36,43 @@ export default function Form({ email, strings }: Props) {
 		>
 			<div className="space-y-2">
 				<Label htmlFor="name">{strings.name}</Label>
-				<Input id="name" name="name" placeholder={strings.name_placeholder} required />
-			</div>
-			<div className="space-y-2">
-				<Label htmlFor="subject">{strings.subject}</Label>
 				<Input
-					id="subject"
-					name="subject"
-					placeholder={strings.subject_placeholder}
+					id="name"
+					name="name"
+					placeholder={strings.name_placeholder}
 					required
 				/>
 			</div>
 			<div className="space-y-2">
-				<Label htmlFor="message">{strings.message}</Label>
+				<Label htmlFor="subject">
+					{strings.subject}
+				</Label>
+				<Input
+					id="subject"
+					name="subject"
+					placeholder={
+						strings.subject_placeholder
+					}
+					required
+				/>
+			</div>
+			<div className="space-y-2">
+				<Label htmlFor="message">
+					{strings.message}
+				</Label>
 				<Textarea
 					id="message"
 					name="message"
-					placeholder={strings.message_placeholder}
+					placeholder={
+						strings.message_placeholder
+					}
 					rows={5}
 					required
 				/>
 			</div>
-			<Button className="w-full">{strings.send}</Button>
+			<Button className="w-full">
+				{strings.send}
+			</Button>
 		</form>
 	)
 }
