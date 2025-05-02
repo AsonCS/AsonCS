@@ -1,12 +1,14 @@
-import certificatesJson from '../../../../public/resources/certificates/certificates.json'
+'use server'
+
+import certificatesJson from '../../../public/resources/certificates/certificates.json'
 
 import { defaultRemoteConfigProvider } from '@ason_cs_ts/firebase'
 import { defaultResourcesCertificatesRepository } from '@ason_cs_ts/shared-remote_config'
 
-import { fetchDefault } from '@/lib/utils'
+import { fetchDefaultServer } from '@/lib/fetch_default.server'
 
 export async function getResourcesCertificatesAction() {
-	const fetch = fetchDefault()
+	const fetch = await fetchDefaultServer()
 	const provider = await defaultRemoteConfigProvider()
 	const repository =
 		defaultResourcesCertificatesRepository(

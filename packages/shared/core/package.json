@@ -10,6 +10,7 @@
 	"dependencies": {
 		"@ason_cs_ts/typescript-config": "*",
 		"tsup": "^8.4.0",
-		"uuid": "^11.1.0"
+		"uuid": "^11.1.0",
+		"winston": "^3.17.0"
 	}
 }

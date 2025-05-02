@@ -10,6 +10,7 @@ import { getRemoteConfig } from 'firebase-admin/remote-config'
 import { RemoteConfig } from '@ason_cs_ts/shared-remote_config'
 
 import { DefaultRemoteConfig } from './remote_config'
+import { getLogger } from '@ason_cs_ts/shared'
 
 export default class App {
 	private readonly firebaseApp: FirebaseApp
@@ -37,11 +38,14 @@ export default class App {
 						this.buildCredential()
 					)
 				} catch (error) {
-					console.error('initializeApp', error)
+					getLogger().error(
+						'initializeApp',
+						error
+					)
 					throw error
 				}
 			} else {
-				console.error('getApp()', error)
+				getLogger().error('getApp()', error)
 				throw error
 			}
 		}
@@ -74,7 +78,7 @@ export default class App {
 				firebaseRemoteConfig
 			)
 		} catch (error) {
-			console.error(
+			getLogger().error(
 				'Initialize server-side Remote Config',
 				error
 			)

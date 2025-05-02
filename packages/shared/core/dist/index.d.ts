@@ -1,3 +1,7 @@
+import winston from 'winston';
+
+declare function getLogger(): winston.Logger;
+
 interface Fetch {
     fetchWithCache<R>(url: string, defaultValue: R): Promise<R>;
 }
@@ -31,4 +35,4 @@ interface GetGithubRepoUsecase extends Usecase<string, GithubRepo[]> {
 }
 declare function getGithubRepoUsecase(githubRepository: GithubRepository): GetGithubRepoUsecase;
 
-export { type Fetch, type GetGithubRepoUsecase, type GithubRepo, type GithubRepository, type Usecase, defaultGithubRepository, getGithubRepoUsecase };
+export { type Fetch, type GetGithubRepoUsecase, type GithubRepo, type GithubRepository, type Usecase, defaultGithubRepository, getGithubRepoUsecase, getLogger };

@@ -4,6 +4,7 @@ import {
 } from 'firebase-admin/remote-config'
 
 import { Lang } from '@ason_cs_ts/i18n'
+import { getLogger } from '@ason_cs_ts/shared'
 import {
 	AboutMe,
 	RemoteConfig,
@@ -46,12 +47,10 @@ export class DefaultRemoteConfig implements RemoteConfig {
 	}
 
 	evaluate(lang: Lang) {
-		console.log(this.firebaseServerTemplate.toJSON())
 		const firebaseServerConfig =
 			this.firebaseServerTemplate.evaluate({
 				lang: lang,
 			})
-		console.log(firebaseServerConfig.getAll())
 
 		this.serverConfig = {
 			get(key) {
@@ -77,7 +76,7 @@ export class DefaultRemoteConfig implements RemoteConfig {
 	}
 
 	async loadServerTemplate() {
-		console.log('Load Remote Config')
+		getLogger().info('Load Remote Config')
 		await this.firebaseServerTemplate.load()
 		this.evaluate(Lang.PT)
 	}

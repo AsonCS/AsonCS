@@ -1,12 +1,12 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { Suspense } from 'react'
 
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { useLang } from '@/hooks/use-lang'
 import { useNavigateTo } from '@/hooks/use-navigateTo'
 import { useStrings } from '@/hooks/use-strings'
-import { remoteConfigAll } from '@/lib/firebase'
 import {
 	ContactLinkDocker,
 	ContactLinkEmail,
@@ -15,6 +15,10 @@ import {
 	ContactLinkPlace,
 } from '@/components/ui/link'
 
+import AboutMe, { AboutMeSkeleton } from './about_me'
+
+export const revalidate = 3600 // In seconds
+
 type Props = {
 	params: Promise<{ lang: string }>
 }
@@ -22,8 +26,6 @@ type Props = {
 export default async function Home({ params }: Props) {
 	const lang = await useLang(params)
 	const strings = await useStrings(lang)
-
-	const remote = await remoteConfigAll(lang)
 
 	return (
 		<div className="flex flex-col grow">
@@ -129,6 +131,7 @@ export default async function Home({ params }: Props) {
 																	.info
 																	.name
 															}
+
 															:
 														</span>
 														<span>
@@ -186,14 +189,13 @@ export default async function Home({ params }: Props) {
 				<section className="w-full py-12">
 					<div className="container px-4 md:px-6">
 						<div className="flex flex-col items-center justify-center space-y-4 text-center">
-							<div className="space-y-2">
-								<h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-									{strings.home.about_me}
-								</h2>
-								<p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-									{remote.about_me}
-								</p>
-							</div>
+							<Suspense
+								fallback={
+									<AboutMeSkeleton />
+								}
+							>
+								<AboutMe lang={lang} />
+							</Suspense>
 						</div>
 					</div>
 				</section>

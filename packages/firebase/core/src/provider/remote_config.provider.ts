@@ -6,7 +6,8 @@ import {
 import { app } from '..'
 
 export default async function defaultRemoteConfigProvider(
-	getRemoteConfig: () => Promise<RemoteConfig> = app.getRemoteConfig
+	getRemoteConfig: () => Promise<RemoteConfig> = () =>
+		app.getRemoteConfig()
 ): Promise<RemoteConfigProvider> {
 	const remoteConfig = await getRemoteConfig()
 	return {

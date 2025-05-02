@@ -5,12 +5,12 @@ import {
 	getGithubRepoUsecase,
 } from '@ason_cs_ts/shared'
 
-import { fetchDefault } from '@/lib/utils'
+import { fetchDefaultServer } from '@/lib/fetch_default.server'
 
 export async function getGithubRepoAction(
 	username: string
 ) {
-	const fetch = fetchDefault()
+	const fetch = await fetchDefaultServer()
 	const repository = defaultGithubRepository(fetch)
 	return getGithubRepoUsecase(repository).execute(
 		username
