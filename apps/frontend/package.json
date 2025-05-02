@@ -11,6 +11,7 @@
 	},
 	"dependencies": {
 		"@ason_cs_ts/i18n": "*",
+		"@ason_cs_ts/firebase": "*",
 		"@ason_cs_ts/shared": "*",
 		"@ason_cs_ts/shared-remote_config": "*",
 		"@fortawesome/fontawesome-svg-core": "^6.7.2",
