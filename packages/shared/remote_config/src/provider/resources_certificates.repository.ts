@@ -1,11 +1,11 @@
 import { Fetch } from '@ason_cs_ts/shared'
 
+import defaultCertificates from '../resources/certificates.json'
+
 import { Certificate, RemoteConfigProvider } from '..'
 
 export interface ResourcesCertificatesRepository {
-	getCertificates(
-		defaultCertificates: Certificate[]
-	): Promise<Certificate[]>
+	getCertificates(): Promise<Certificate[]>
 }
 
 export default function defaultResourcesCertificatesRepository(
@@ -13,9 +13,7 @@ export default function defaultResourcesCertificatesRepository(
 	remoteConfigProvider: RemoteConfigProvider
 ): ResourcesCertificatesRepository {
 	return {
-		getCertificates(
-			defaultCertificates
-		): Promise<Certificate[]> {
+		getCertificates(): Promise<Certificate[]> {
 			return fetch.fetchWithCache(
 				remoteConfigProvider.getResourcesCertificates(),
 				defaultCertificates

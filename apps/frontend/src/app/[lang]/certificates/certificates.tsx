@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import { Calendar, ExternalLink } from 'lucide-react'
 
@@ -14,6 +13,7 @@ import {
 import { Skeleton } from '@/components/ui/skeleton'
 
 import { getResourcesCertificatesAction } from '../../actions/get_resources_certificates.action'
+import CardImage from './card_image'
 
 type Props = {
 	cardView: string
@@ -58,15 +58,9 @@ export default async function Certificates({
 			className="overflow-hidden flex flex-col"
 		>
 			<div className="aspect-video relative w-full overflow-hidden">
-				<Image
-					src={
-						certificate.image
-							? `/resources/certificates/${certificate.image}`
-							: '/placeholder.svg'
-					}
-					alt={certificate.title}
-					fill
-					className="object-cover+ transition-all hover:scale-110"
+				<CardImage
+					image={certificate.image}
+					title={certificate.title}
 				/>
 			</div>
 			<CardHeader className="pb-2">
@@ -92,7 +86,7 @@ export default async function Certificates({
 					<Calendar className="mr-1 h-4 w-4" />
 					<span>
 						{formatDate(
-							`${certificate.dateYear}-${certificate.dateMonth}-${certificate.dateDay + 1}`
+							`${certificate.dateYear}-${certificate.dateMonth}-${certificate.dateDay}`
 						)}
 					</span>
 				</div>

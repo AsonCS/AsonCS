@@ -30,7 +30,7 @@ interface RemoteConfigProvider {
 }
 
 interface ResourcesCertificatesRepository {
-    getCertificates(defaultCertificates: Certificate[]): Promise<Certificate[]>;
+    getCertificates(): Promise<Certificate[]>;
 }
 declare function defaultResourcesCertificatesRepository(fetch: Fetch, remoteConfigProvider: RemoteConfigProvider): ResourcesCertificatesRepository;
 

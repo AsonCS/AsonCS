@@ -1,7 +1,5 @@
 'use server'
 
-import certificatesJson from '../../../public/resources/certificates/certificates.json'
-
 import { defaultRemoteConfigProvider } from '@ason_cs_ts/firebase'
 import { defaultResourcesCertificatesRepository } from '@ason_cs_ts/shared-remote_config'
 
@@ -16,5 +14,5 @@ export async function getResourcesCertificatesAction() {
 			provider
 		)
 
-	return repository.getCertificates(certificatesJson)
+	return repository.getCertificates()
 }
