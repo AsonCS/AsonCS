@@ -9,7 +9,7 @@
 	},
 	"dependencies": {
 		"@ason_cs_ts/shared": "*",
-		"@ason_cs_ts/typescript-config": "*",
+		"@ason_cs_ts/typescript_config": "*",
 		"tsup": "^8.4.0",
 		"uuid": "^11.1.0"
 	}

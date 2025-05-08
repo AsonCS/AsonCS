@@ -1,3 +1,7 @@
-import defaultRemoteConfigProvider from './remote_config.provider'
+import firebaseRemoteConfigProvider from './remote_config.provider'
+import firebaseResourcesCertificatesRepository from './resources_certificates.repository'
 
-export { defaultRemoteConfigProvider }
+export {
+	firebaseRemoteConfigProvider,
+	firebaseResourcesCertificatesRepository,
+}

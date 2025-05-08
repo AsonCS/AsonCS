@@ -1,3 +1,3 @@
 {
-	"extends": "@ason_cs_ts/typescript-config/base.json"
+	"extends": "@ason_cs_ts/typescript_config/base.json"
 }

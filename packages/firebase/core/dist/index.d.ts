@@ -1,4 +1,5 @@
-import { RemoteConfig, RemoteConfigProvider } from '@ason_cs_ts/shared-remote_config';
+import { RemoteConfig, RemoteConfigProvider, ResourcesCertificatesRepository } from '@ason_cs_ts/shared-remote_config';
+import { Fetch } from '@ason_cs_ts/shared';
 
 declare class App {
     private readonly firebaseApp;
@@ -13,6 +14,8 @@ declare class App {
 
 declare const app: App;
 
-declare function defaultRemoteConfigProvider(getRemoteConfig?: () => Promise<RemoteConfig>): Promise<RemoteConfigProvider>;
+declare function firebaseRemoteConfigProvider(getRemoteConfig?: () => Promise<RemoteConfig>): Promise<RemoteConfigProvider>;
 
-export { app, defaultRemoteConfigProvider };
+declare function firebaseResourcesCertificatesRepository(fetch: Fetch, getRemoteConfig?: () => Promise<RemoteConfig>): Promise<ResourcesCertificatesRepository>;
+
+export { app, firebaseRemoteConfigProvider, firebaseResourcesCertificatesRepository };

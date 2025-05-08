@@ -1,5 +1,5 @@
 {
-	"name": "@ason_cs_ts/firebase",
+	"name": "@ason_cs_ts/dato_cms",
 	"version": "0.1.0",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
@@ -10,8 +10,8 @@
 	"dependencies": {
 		"@ason_cs_ts/shared": "*",
 		"@ason_cs_ts/shared-remote_config": "*",
-		"@ason_cs_ts/typescript_config": "*",
-		"firebase-admin": "^13.3.0",
+		"@ason_cs_ts/typescript-config": "*",
+		"@datocms/cda-client": "^0.2.7",
 		"tsup": "^8.4.0",
 		"uuid": "^11.1.0"
 	}

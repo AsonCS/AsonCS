@@ -1,18 +1,15 @@
 'use server'
 
-import { defaultRemoteConfigProvider } from '@ason_cs_ts/firebase'
-import { defaultResourcesCertificatesRepository } from '@ason_cs_ts/shared-remote_config'
+//import { firebaseResourcesCertificatesRepository } from '@ason_cs_ts/firebase'
+import { datoCmsResourcesCertificatesRepository } from '@ason_cs_ts/dato_cms'
 
-import { fetchDefaultServer } from '@/lib/fetch_default.server'
+//import { fetchDefaultServer } from '@/lib/fetch_default.server'
 
 export async function getResourcesCertificatesAction() {
-	const fetch = await fetchDefaultServer()
-	const provider = await defaultRemoteConfigProvider()
+	//const fetch = await fetchDefaultServer()
+	//const repository = await firebaseResourcesCertificatesRepository(fetch)
 	const repository =
-		defaultResourcesCertificatesRepository(
-			fetch,
-			provider
-		)
+		datoCmsResourcesCertificatesRepository()
 
 	return repository.getCertificates()
 }

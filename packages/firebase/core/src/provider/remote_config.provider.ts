@@ -5,7 +5,7 @@ import {
 
 import { app } from '..'
 
-export default async function defaultRemoteConfigProvider(
+export default async function firebaseRemoteConfigProvider(
 	getRemoteConfig: () => Promise<RemoteConfig> = () =>
 		app.getRemoteConfig()
 ): Promise<RemoteConfigProvider> {

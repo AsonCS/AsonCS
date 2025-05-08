@@ -4,6 +4,7 @@
 		"typescript": "npx tsx"
 	},
 	"cSpell.words": [
-		"comunicacao"
+		"comunicacao",
+		"datocms"
 	]
 }

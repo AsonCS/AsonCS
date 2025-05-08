@@ -1,5 +1,5 @@
 {
-	"name": "@ason_cs_ts/eslint-config",
+	"name": "@ason_cs_ts/eslint_config",
 	"version": "0.0.0",
 	"type": "module",
 	"private": true,
