@@ -52,6 +52,17 @@ export default async function Certificates({
 		)
 	}
 
+	function formatDescription(
+		description: string
+	): string {
+		while (description.includes('**')) {
+			description = description
+				.replace('**', '<b>')
+				.replace('**', '</b>')
+		}
+		return description
+	}
+
 	return certificates.map((certificate, idx) => (
 		<Card
 			key={idx}
@@ -77,9 +88,14 @@ export default async function Certificates({
 				</Link>
 			</CardHeader>
 			<CardContent className="grow">
-				<p className="text-sm text-gray-500 dark:text-gray-400">
-					{certificate.description}
-				</p>
+				<p
+					className="text-sm text-gray-500 dark:text-gray-400"
+					dangerouslySetInnerHTML={{
+						__html: formatDescription(
+							certificate.description
+						),
+					}}
+				/>
 			</CardContent>
 			<CardFooter className="flex-col items-start gap-3">
 				<div className="mt-2 flex items-center text-sm text-gray-500 dark:text-gray-400">

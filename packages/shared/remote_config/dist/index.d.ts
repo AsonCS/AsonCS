@@ -84,6 +84,30 @@ var certificates = [
 		image: "https://firebasestorage.googleapis.com/v0/b/asoncs-ts.firebasestorage.app/o/resources%2Fcertificates%2Fcomunicacao_entre_sistemas.png?alt=media&token=8f7b438f-40aa-4c5c-8f33-f272e25a2f7d",
 		pdf: "https://firebasestorage.googleapis.com/v0/b/asoncs-ts.firebasestorage.app/o/resources%2Fcertificates%2Fcomunicacao_entre_sistemas.pdf?alt=media&token=1957c1e6-8426-4217-a54d-f70c07f0f1f4",
 		url: "https://fullcycle.com.br/certificado/d2199c6b-5084-41df-91ce-896d72b93585"
+	},
+	{
+		dateDay: 8,
+		dateMonth: 5,
+		dateYear: 2025,
+		description: "Domain Driven Design (DDD) é um conceito capaz de mudar a forma que você projeta e constrói software.",
+		image: "https://www.datocms-assets.com/160736/1746738320-domain_driven_design.png",
+		issuer: "Full Cycle",
+		issuerLink: "https://fullcycle.com.br/",
+		pdf: "https://www.datocms-assets.com/160736/1746738303-domain_driven_design.pdf",
+		title: "Domain Driven Design",
+		url: "https://fullcycle.com.br/certificado/7b7ffa6d-e712-4cac-a4e3-9023511fecd1"
+	},
+	{
+		dateDay: 6,
+		dateMonth: 5,
+		dateYear: 2025,
+		description: "Existem cinco princípios de design que todo desenvolvedor precisa seguir para criar bons códigos. O SOLID Express tratá de cada um desses princípios e como utilizá-los.",
+		image: "https://www.datocms-assets.com/160736/1746738625-solid_express.png",
+		issuer: "Full Cycle",
+		issuerLink: "https://fullcycle.com.br/",
+		pdf: "https://www.datocms-assets.com/160736/1746738620-solid_express.pdf",
+		title: "SOLID Express",
+		url: "https://fullcycle.com.br/certificado/9a0fc85a-1054-4d2e-bc2f-8b525833dd2b"
 	}
 ];
 
