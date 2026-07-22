@@ -78,6 +78,6 @@ export class DefaultRemoteConfig implements RemoteConfig {
 	async loadServerTemplate() {
 		getLogger().info('Load Remote Config')
 		await this.firebaseServerTemplate.load()
-		this.evaluate(Lang.PT)
+		this.evaluate(Lang.DEFAULT)
 	}
 }
