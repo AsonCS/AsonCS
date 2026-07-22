@@ -85,6 +85,7 @@ type Translatable = {
 type Strings = Translatable & typeof notTranslatable;
 
 declare enum Lang {
+    DEFAULT = "en",
     EN = "en",
     ES = "es",
     PT = "pt"

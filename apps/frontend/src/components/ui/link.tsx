@@ -57,7 +57,7 @@ export function ContactLinkGithub({
 	text?: string
 }) {
 	return (
-		<ContactLink href={github}>
+		<ContactLink className='w-fit' href={github}>
 			<FontAwesomeIcon className={contactLinkContentClassName} icon={faGithub} />
 			<span className={className}>{text}</span>
 		</ContactLink>

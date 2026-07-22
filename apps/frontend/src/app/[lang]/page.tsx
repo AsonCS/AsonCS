@@ -187,7 +187,6 @@ export default async function Home({ params }: Props) {
 					</div>
 				</section>
 				<section className="w-full py-12">
-					<div className="container px-4 md:px-6">
 						<div className="flex flex-col items-center justify-center space-y-4 text-center">
 							<Suspense
 								fallback={
@@ -197,7 +196,6 @@ export default async function Home({ params }: Props) {
 								<AboutMe lang={lang} />
 							</Suspense>
 						</div>
-					</div>
 				</section>
 			</main>
 			<footer className="w-full border-t bg-gray-100 py-6 dark:bg-gray-900">

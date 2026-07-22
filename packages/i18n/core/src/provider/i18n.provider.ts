@@ -9,7 +9,7 @@ export interface I18nProvider {
 export default function defaultI18nProvider(): I18nProvider {
 	return {
 		get(lang) {
-			return (resources[lang ?? Lang.PT] ?? resources[Lang.PT]) as any
+			return (resources[lang ?? Lang.DEFAULT] ?? resources[Lang.DEFAULT]) as any
 		},
 	}
 }

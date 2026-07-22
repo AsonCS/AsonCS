@@ -8,6 +8,6 @@ export async function useLang(
 	return (
 		langs().find(
 			(value) => value == lang?.toLowerCase()
-		) ?? Lang.PT
+		) ?? Lang.DEFAULT
 	)
 }
