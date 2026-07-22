@@ -80,6 +80,7 @@ var require_dist = __commonJS({
       username: "AsonCS"
     };
     var Lang2 = /* @__PURE__ */ ((Lang3) => {
+      Lang3["DEFAULT"] = "en";
       Lang3["EN"] = "en";
       Lang3["ES"] = "es";
       Lang3["PT"] = "pt";
@@ -291,11 +292,11 @@ var require_dist = __commonJS({
       return {
         get(lang) {
           return resources_exports[
-            lang ?? "pt"
-            /* PT */
+            lang ?? "en"
+            /* DEFAULT */
           ] ?? resources_exports[
-            "pt"
-            /* PT */
+            "en"
+            /* DEFAULT */
           ];
         }
       };
