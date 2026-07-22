@@ -10,7 +10,7 @@
 	"dependencies": {
 		"@ason_cs_ts/shared": "*",
 		"@ason_cs_ts/shared-remote_config": "*",
-		"@ason_cs_ts/typescript_config": "*",
+		"@ason_cs_ts/typescript-config": "*",
 		"firebase-admin": "^13.3.0",
 		"tsup": "^8.4.0",
 		"uuid": "^11.1.0"
